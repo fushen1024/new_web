@@ -1,0 +1,255 @@
+{
+  "title": "政协杭州市上城区委员会2026年度各界别履职计划",
+  "plan": [
+    {
+      "jiebei": "中共界别",
+      "activities": [
+        {
+          "name": "国际人才交流活动",
+          "type": "主题活动",
+          "plannedTime": "1月"
+        },
+        {
+          "name": "加强人才引育，助推CID建设专题协商会",
+          "type": "专题协商",
+          "plannedTime": "9月"
+        }
+      ]
+    },
+    {
+      "jiebei": "无党派人士界别",
+      "activities": [
+        {
+          "name": "“她”力量·在路上——与新就业女性共庆妇女节主题沙龙",
+          "type": "主题沙龙",
+          "plannedTime": "3月"
+        },
+        {
+          "name": "界别委员公益惠民活动",
+          "type": "公益咨询服务",
+          "plannedTime": "5月"
+        },
+        {
+          "name": "无党派界别协商议事会",
+          "type": "专题协商",
+          "plannedTime": "9月"
+        }
+      ]
+    },
+    {
+      "jiebei": "共青团、青联界别",
+      "activities": [
+        {
+          "name": "送福送春联活动",
+          "type": "惠民服务",
+          "plannedTime": "1月"
+        },
+        {
+          "name": "“书香润初心·青年话担当”读书交流会",
+          "type": "主题活动",
+          "plannedTime": "4月"
+        }
+      ]
+    },
+    {
+      "jiebei": "工会界别",
+      "activities": [
+        {
+          "name": "“铜韵传承·锻打时光”铜雕艺术体验日活动",
+          "type": "互动体验",
+          "plannedTime": "4月"
+        },
+        {
+          "name": "上城区职工毅行活动",
+          "type": "主题活动",
+          "plannedTime": "4月"
+        }
+      ]
+    },
+    {
+      "jiebei": "妇联界别",
+      "activities": [
+        {
+          "name": "“品宋韵·话传承·谋创新” 文化专题活动",
+          "type": "主题活动",
+          "plannedTime": "5月"
+        },
+        {
+          "name": "金融赋能发展协商会",
+          "type": "专题协商",
+          "plannedTime": "9月"
+        }
+      ]
+    },
+    {
+      "jiebei": "工商联界别",
+      "activities": [
+        {
+          "name": "营商环境专项调研协商",
+          "type": "专题协商",
+          "plannedTime": "7月"
+        },
+        {
+          "name": "委员企业现代治理互学活动",
+          "type": "主题活动",
+          "plannedTime": "12月"
+        }
+      ]
+    },
+    {
+      "jiebei": "科技、科协界别",
+      "activities": [
+        {
+          "name": "开展关于推进OPC发展的调研",
+          "type": "专题调研",
+          "plannedTime": "3月"
+        },
+        {
+          "name": "开展关于加快推进科技创新和产业创新深度融合的协商会",
+          "type": "专题协商",
+          "plannedTime": "10月"
+        }
+      ]
+    },
+    {
+      "jiebei": "侨、台界别",
+      "activities": [
+        {
+          "name": "“侨助发展 AI赋能经济”——走进群核科技",
+          "type": "主题活动",
+          "plannedTime": "4月"
+        },
+        {
+          "name": "“融通世界 文化互鉴”活动",
+          "type": "主题活动",
+          "plannedTime": "6月"
+        },
+        {
+          "name": "侨助发展专题协商会",
+          "type": "专题协商",
+          "plannedTime": "9月"
+        }
+      ]
+    },
+    {
+      "jiebei": "新闻文体界别",
+      "activities": [
+        {
+          "name": "上城区人文经济创新发展专题协商会",
+          "type": "专题协商",
+          "plannedTime": "8月"
+        },
+        {
+          "name": "宋韵文化“两创”交流分享活动",
+          "type": "参观交流",
+          "plannedTime": "10月"
+        }
+      ]
+    },
+    {
+      "jiebei": "经济界别",
+      "activities": [
+        {
+          "name": "开局“十五五”——经济高质量发展专题协商会",
+          "type": "专题协商",
+          "plannedTime": "4月"
+        },
+        {
+          "name": "创新高地专题调研活动",
+          "type": "主题活动",
+          "plannedTime": "9月"
+        }
+      ]
+    },
+    {
+      "jiebei": "环境资源和农业界别",
+      "activities": [
+        {
+          "name": "“城村共生绿美共富”城乡融合体验实践分享会",
+          "type": "主题活动",
+          "plannedTime": "4月"
+        },
+        {
+          "name": "上城去城市更新盘活存量建筑的举措协商会",
+          "type": "专题协商",
+          "plannedTime": "10月"
+        }
+      ]
+    },
+    {
+      "jiebei": "教育界别",
+      "activities": [
+        {
+          "name": "青少年模拟政协委员活动",
+          "type": "主题活动",
+          "plannedTime": "9月"
+        },
+        {
+          "name": "教育系统政协委员座谈会",
+          "type": "专题协商",
+          "plannedTime": "11月"
+        }
+      ]
+    },
+    {
+      "jiebei": "医卫界别",
+      "activities": [
+        {
+          "name": "界别委员惠民健体服务",
+          "type": "名中医讲座、适宜技术应用、义诊",
+          "plannedTime": "5月"
+        },
+        {
+          "name": "医卫界别协商议事会",
+          "type": "专题协商",
+          "plannedTime": "9月"
+        }
+      ]
+    },
+    {
+      "jiebei": "社会福利和保障界别",
+      "activities": [
+        {
+          "name": "爱心服务活动",
+          "type": "志愿服务",
+          "plannedTime": "6月"
+        },
+        {
+          "name": "爱心义卖活动",
+          "type": "爱心义卖",
+          "plannedTime": "11月"
+        }
+      ]
+    },
+    {
+      "jiebei": "民族、宗教界别",
+      "activities": [
+        {
+          "name": "红十字会博爱周市集",
+          "type": "主题活动",
+          "plannedTime": "5月"
+        },
+        {
+          "name": "居民楼外立面整治协调会",
+          "type": "专题协商",
+          "plannedTime": "8月"
+        }
+      ]
+    },
+    {
+      "jiebei": "特邀界别",
+      "activities": [
+        {
+          "name": "区垃圾分类工作专题协商",
+          "type": "专题协商",
+          "plannedTime": "5月"
+        },
+        {
+          "name": "城市道路健康体检观察主题活动",
+          "type": "主题活动",
+          "plannedTime": "9月"
+        }
+      ]
+    }
+  ]
+}
