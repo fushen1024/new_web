@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>政协委员通 · 杭州市上城区政协</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+:root{
+  --red:#c0252d;--red-dark:#8f0d14;--red-deep:#6b0000;
+  --red-light:#f8e9ea;--red-pale:#fdf3f3;
+  --white:#fff;--bg:#f5f6f8;--surface:#fff;
+  --border:#e2e5ec;--border2:#d0d4dd;
+  --text1:#1a1e2e;--text2:#4a5068;--text3:#8892a4;--textinv:#fff;
+  --gold:#b8860b;--gold-bg:#fff8e8;
+  --blue:#1a56a8;--blue-bg:#eaf1fb;
+  --green:#217a45;--green-bg:#e8f5ee;
+  --sh-sm:0 1px 3px rgba(0,0,0,.08);
+  --sh-md:0 4px 12px rgba(0,0,0,.10);
+  --sh-lg:0 8px 28px rgba(0,0,0,.13);
+  --r-sm:4px;--r-md:8px;--r-lg:12px;--r-xl:16px;
+  --ease-out:cubic-bezier(.22,.68,0,1.2);
+  --ease-std:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Noto Sans SC',system-ui,sans-serif;background:var(--bg);color:var(--text1);font-size:14px;line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select{font-family:inherit}
+ul{list-style:none}
+img{display:block;max-width:100%;object-fit:cover}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* ── gov banner ── */
+.gov-banner{background:var(--red-deep);color:rgba(255,255,255,.75);font-size:12px;padding:5px 24px;display:flex;align-items:center;justify-content:space-between}
+.gov-banner a{color:rgba(255,255,255,.7);transition:color .15s}.gov-banner a:hover{color:#fff}
+
+/* ── header ── */
+.header{background:var(--red);color:#fff;box-shadow:0 2px 12px rgba(144,13,20,.35);position:sticky;top:0;z-index:200}
+.header-inner{max-width:1340px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:24px;height:64px}
+.logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.logo-emblem{width:44px;height:44px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700}
+.logo-title{font-size:19px;font-weight:700;font-family:'Noto Serif SC',serif;letter-spacing:.04em;line-height:1.2}
+.logo-sub{font-size:11px;opacity:.72;letter-spacing:.05em}
+.topnav{flex:1;display:flex;align-items:center;gap:2px;overflow-x:auto}
+.topnav::-webkit-scrollbar{height:0}
+.nav-item{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--r-sm);font-size:13.5px;font-weight:500;color:rgba(255,255,255,.85);white-space:nowrap;transition:background .15s,color .15s,transform .15s;position:relative;cursor:pointer}
+.nav-item::after{content:'';position:absolute;bottom:-2px;left:50%;width:0;height:2px;background:#fff;border-radius:1px;transition:width .22s var(--ease-std),left .22s var(--ease-std)}
+.nav-item:hover{background:rgba(255,255,255,.14);color:#fff}
+.nav-item:hover::after{width:60%;left:20%}
+.nav-item.active{background:rgba(255,255,255,.2);color:#fff;font-weight:600}
+.nav-item.active::after{width:70%;left:15%}
+.nav-item:active{transform:scale(.97)}
+.nav-icon{font-size:15px;line-height:1}
+.hdr-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.hdr-btn{padding:6px 14px;border-radius:var(--r-md);font-size:12.5px;font-weight:500;color:rgba(255,255,255,.9);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);transition:background .15s,transform .15s}
+.hdr-btn:hover{background:rgba(255,255,255,.22);transform:translateY(-1px)}
+
+/* ── main ── */
+.main{flex:1;max-width:1340px;margin:0 auto;width:100%;padding:24px}
+
+/* ── page anim ── */
+.page-enter{animation:pageIn .35s var(--ease-out) both}
+@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── hero ── */
+.hero{background:linear-gradient(135deg,var(--red-dark) 0%,var(--red) 55%,#e83a3a 100%);color:#fff;border-radius:var(--r-xl);padding:32px 40px;margin-bottom:32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat}
+.hero::after{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hero-eyebrow{font-size:12px;opacity:.75;letter-spacing:.1em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6)}
+.hero-title{font-size:26px;font-weight:700;font-family:'Noto Serif SC',serif;margin-bottom:8px;position:relative;z-index:1}
+.hero-sub{font-size:13px;opacity:.8;position:relative;z-index:1;line-height:1.8}
+
+/* ── stat cards ── */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:32px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:8px;transition:box-shadow .22s,transform .22s,border-color .22s;cursor:default}
+.stat-card:hover{box-shadow:var(--sh-md);transform:translateY(-2px);border-color:var(--red-light)}
+.stat-num{font-size:28px;font-weight:700;color:var(--red);font-family:'Noto Serif SC',serif;line-height:1}
+.stat-label{font-size:13px;color:var(--text2)}
+.stat-icon{font-size:28px;margin-bottom:4px}
+
+/* ── section ── */
+.sec{margin-bottom:32px}
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sec-title{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;color:var(--text1)}
+.sec-bar{width:4px;height:18px;background:var(--red);border-radius:2px;flex-shrink:0}
+.link-more{font-size:12px;color:var(--red);display:flex;align-items:center;gap:4px;cursor:pointer;font-weight:500;transition:opacity .15s,gap .15s}
+.link-more:hover{opacity:.75;gap:7px}
+
+/* ── card grid ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card-grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+
+/* ── generic card ── */
+.card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r-lg);padding:20px;transition:box-shadow .22s,transform .22s,border-color .22s;cursor:pointer;position:relative}
+.card:hover{box-shadow:var(--sh-md);transform:translateY(-2px);border-color:var(--red-light)}
+.card.selected{border-color:var(--red);background:var(--red-pale);box-shadow:0 0 0 3px rgba(192,37,45,.12)}
+.card-check{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;animation:popIn .25s var(--ease-out) both}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.card-name{font-size:15px;font-weight:600;color:var(--text1);margin-bottom:6px}
+.card-info{font-size:13px;color:var(--text2);line-height:1.7}
+.card-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:500}
+.tag-red{background:var(--red-light);color:var(--red)}
+.tag-blue{background:var(--blue-bg);color:var(--blue)}
+.tag-gold{background:var(--gold-bg);color:var(--gold)}
+.tag-green{background:var(--green-bg);color:var(--green)}
+.tag-gray{background:#f0f1f4;color:var(--text2)}
+
+/* ── search bar ── */
+.search-bar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.search-input{flex:1;min-width:220px;padding:9px 14px 9px 38px;border:1.5px solid var(--border2);border-radius:var(--r-md);font-size:14px;background:var(--surface);transition:border-color .15s,box-shadow .15s;outline:none;color:var(--text1)}
+.search-input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,37,45,.1)}
+.search-wrap{position:relative;flex:1}
+.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--text3);pointer-events:none}
+.filter-btns{display:flex;flex-wrap:wrap;gap:8px}
+.filter-btn{padding:7px 14px;border-radius:var(--r-md);font-size:13px;font-weight:500;border:1.5px solid var(--border2);color:var(--text2);background:var(--surface);transition:all .15s;cursor:pointer}
+.filter-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-pale)}
+.filter-btn.active{border-color:var(--red);color:var(--red);background:var(--red-light);font-weight:600}
+
+/* ── tab bar ── */
+.tab-bar{display:flex;gap:4px;border-bottom:2px solid var(--border);margin-bottom:24px;overflow-x:auto}
+.tab-bar::-webkit-scrollbar{height:0}
+.tab{padding:10px 18px;font-size:14px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .15s,border-color .15s;white-space:nowrap}
+.tab:hover{color:var(--red)}
+.tab.active{color:var(--red);border-bottom-color:var(--red);font-weight:600}
+
+/* ── table ── */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r-lg);border:1px solid var(--border);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead{background:linear-gradient(135deg,var(--red-dark),var(--red));color:#fff}
+th{padding:11px 16px;text-align:left;font-weight:600;font-size:13px;letter-spacing:.02em}
+td{padding:10px 16px;border-bottom:1px solid var(--border);color:var(--text1)}
+tr:last-child td{border-bottom:none}
+tr.row-hover:hover td{background:var(--red-pale)}
+tr.row-selected td{background:var(--red-pale) !important}
+tr.row-selected td:first-child{border-left:3px solid var(--red)}
+
+/* ── district group card ── */
+.district-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r-lg);overflow:hidden;transition:box-shadow .22s,border-color .22s;cursor:pointer}
+.district-card:hover{box-shadow:var(--sh-md);border-color:var(--red-light)}
+.district-card.selected{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,37,45,.12)}
+.district-hd{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(90deg,var(--red-pale) 0%,#fff 100%)}
+.district-name{font-size:15px;font-weight:700;color:var(--text1)}
+.district-count{font-size:12px;font-weight:600;padding:3px 10px;background:var(--red);color:#fff;border-radius:20px}
+.district-body{padding:0 16px 16px}
+.member-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.member-table th{padding:7px 12px;text-align:left;background:var(--bg);color:var(--text2);font-weight:600;border-bottom:1px solid var(--border);font-size:12px}
+.member-table td{padding:7px 12px;border-bottom:1px solid var(--border);color:var(--text1)}
+.member-table tr:last-child td{border-bottom:none}
+.member-table tr:hover td{background:var(--red-pale)}
+.member-table tr.selected-row td{background:var(--red-pale);border-left:3px solid var(--red)}
+
+/* ── photo grid ── */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.photo-item{border-radius:var(--r-md);overflow:hidden;aspect-ratio:4/3;background:var(--bg);position:relative;cursor:pointer;transition:transform .22s,box-shadow .22s}
+.photo-item:hover{transform:scale(1.04);box-shadow:var(--sh-lg);z-index:2}
+.photo-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.photo-item:hover img{transform:scale(1.06)}
+.photo-item .photo-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.55));padding:6px 8px 5px;color:#fff;font-size:11px;text-align:center}
+/* img fallback */
+.img-fallback{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--red-pale),var(--red-light));color:var(--red);font-size:11px;gap:4px;padding:8px;text-align:center}
+
+/* ── star badge ── */
+.star-badge{display:inline-flex;align-items:center;gap:3px;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600}
+.star-5{background:#fff3cd;color:#b8860b;border:1px solid #e6c200}
+.star-4{background:#e8f5ee;color:#217a45;border:1px solid #90c7a5}
+.star-3{background:#eaf1fb;color:#1a56a8;border:1px solid #99bae6}
+
+/* ── progress bar ── */
+.prog-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.prog-label{min-width:80px;font-size:13px;color:var(--text2)}
+.prog-bar{flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;border-radius:4px;background:var(--red);transition:width .6s var(--ease-out)}
+.prog-val{min-width:36px;font-size:13px;font-weight:600;color:var(--text1);text-align:right}
+
+/* ── timeline ── */
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:16px;padding:12px 0;border-bottom:1px dashed var(--border)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:5px}
+.tl-time{min-width:70px;font-size:12px;color:var(--text3);padding-top:2px}
+.tl-name{font-size:14px;font-weight:500;color:var(--text1)}
+.tl-meta{font-size:12px;color:var(--text2);margin-top:2px}
+
+/* ── loading skeleton ── */
+.skel{background:linear-gradient(90deg,#f0f1f4 25%,#e4e6eb 50%,#f0f1f4 75%);background-size:200% 100%;animation:skel 1.4s ease infinite;border-radius:var(--r-sm)}
+@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ── responsive ── */
+@media(max-width:768px){
+  .main{padding:16px}
+  .hero{padding:24px 20px}
+  .hero-title{font-size:20px}
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  .card-grid{grid-template-columns:1fr}
+  .header-inner{gap:12px;padding:0 16px}
+  .logo-sub{display:none}
+}
+@media(max-width:480px){
+  .stat-row{grid-template-columns:1fr 1fr}
+  .topnav{gap:0}
+  .nav-item{padding:5px 10px;font-size:12.5px}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     INLINE DATA (all JSON embedded, no CORS / file:// issues)
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+window.__MEMBERS__  = {"title":"2026年上城区一届政协委员街道分组名单","groups":[{"groupName":"政协  领导（9）","members":[{"id":"1","name":"孙国方","party":"中共","gender":"男","position":"区政协党组书记"},{"id":"2","name":"黄爱芳","party":"中共","gender":"女","position":"区政协原党组书记、主席"},{"id":"3","name":"叶榕","party":"中共","gender":"男","position":"区政协副书记、副主席"},{"id":"4","name":"楼玉宇","party":"九三学社","gender":"女","position":"区政协副主席"},{"id":"5","name":"洪明","party":"民建","gender":"男","position":"区政协副主席"},{"id":"6","name":"步汉英","party":"民进","gender":"女","position":"区政协副主席"},{"id":"7","name":"范国良","party":"中共","gender":"男","position":"区政协党组成员、副主席"},{"id":"8","name":"许利萍","party":"致公党","gender":"女","position":"区政协副主席"},{"id":"9","name":"王良约","party":"中共","gender":"男","position":"区政协党组成员、秘书长"}]},{"groupName":"湖滨 （20）","members":[{"id":"10","name":"查靖","party":"中共","gender":"女","position":"湖滨街道党工委副书记"},{"id":"11","name":"王林慧","party":"民进","gender":"女","position":"杭州市天长小学副校长"},{"id":"12","name":"方蔚军","party":"中共","gender":"女","position":"区政协提案委主任"},{"id":"13","name":"许康波","party":"中共","gender":"男","position":"区司法局党委书记"},{"id":"14","name":"杜缨","party":"农工党","gender":"女","position":"杭州采荷第一小学教育集团副校长"},{"id":"15","name":"李伟达","party":"中共","gender":"男","position":"浙商资产党委书记、董事长"},{"id":"16","name":"吴利泽","party":"民盟","gender":"男","position":"浙浙江耀厦建设集团有限公司执行总裁"},{"id":"17","name":"吴桂萍","party":"农工党","gender":"女","position":"深蓝口腔盈丰路分院院长"},{"id":"18","name":"张正","party":"民盟","gender":"男","position":"浙江音乐学院艺术处干事、校教育基金理事、大提琴老师"},{"id":"19","name":"张虹","party":"致公党","gender":"女","position":"上城区湖滨街道社区卫生服务中心主任"},{"id":"20","name":"陆雯","party":"中共","gender":"女","position":"杭州聚梦启杭科技有限公司总经理/杭州皇冠特种水产饲料有限公司党支部组织委员"},{"id":"21","name":"陈洁","party":"民建","gender":"女","position":"杭州市住房保障和房产管理局住房改革和保障处（住房租赁处）二级调研员"},{"id":"22","name":"陈翔","party":"群众","gender":"男","position":"杭州艺星医疗美容医院有限公司总经理"},{"id":"23","name":"郑斐尹","party":"中共","gender":"女","position":"团区委副书记"},{"id":"24","name":"胡丽亚","party":"民建","gender":"女","position":"上城区科技经信局局长"},{"id":"25","name":"胡巍","party":"无党派","gender":"男","position":"蜀海（北京）供应链管理有限责任公司 副总经理"},{"id":"26","name":"钱云忠","party":"民盟","gender":"男","position":"区为企服务中心主任"},{"id":"27","name":"章海燕","party":"中共","gender":"女","position":"上城区疾病预防控制中心（上城区卫生监督所）正科级干部"},{"id":"28","name":"葛佳轩","party":"民建","gender":"女","position":"杭州道千餐饮管理有限公司创始合伙人、总经理"},{"id":"29","name":"黎洁","party":"中共","gender":"女","position":"广宇集团党委副书记、董事"}]},{"groupName":"清波（24）","members":[{"id":"30","name":"徐洁","party":"中共","gender":"女","position":"清波街道党工委副书记"},{"id":"31","name":"叶萌","party":"民革","gender":"男","position":"杭州金茂源工艺文化用品有限公司艺术总监"},{"id":"32","name":"朱嫣红","party":"无党派","gender":"女","position":"杭州金星铜集团有限公司工艺美术师"},{"id":"33","name":"许国伟","party":"中共","gender":"男","position":"区政协社会法制和港澳台侨委员会主任"},{"id":"34","name":"孙雅国","party":"群众","gender":"男","position":"杭州基督教鼓楼驻堂牧师"},{"id":"35","name":"杜永波","party":"群众","gender":"男","position":"杭州市伊斯兰教协会副会长，杭州清真寺阿訇"},{"id":"36","name":"杨洁","party":"中共","gender":"女","position":"杭州洁莹旅游用品有限公司总经理"},{"id":"37","name":"言妍","party":"民进","gender":"女","position":"杭州市娃哈哈小学副校长"},{"id":"38","name":"沈乐平","party":"中共民盟","gender":"男","position":"中国美院中国画与书法艺术学院副院长"},{"id":"39","name":"张含","party":"无党派","gender":"女","position":"杭州嘉华园林景观工程有限公司法人代表兼总经理"},{"id":"40","name":"陈贺梅","party":"无党派","gender":"女","position":"浙江泽大律师事务所高级合伙人"},{"id":"41","name":"陈蕴涵","party":"中共","gender":"男","position":"杭州胡庆余堂国药号有限公司董事长、总经理"},{"id":"42","name":"苟佶明","party":"群众","gender":"男","position":"杭州新丰小吃股份有限公司董事长兼总经理"},{"id":"43","name":"罗旭峰","party":"无党派","gender":"男","position":"南华期货股份有限公司总经理"},{"id":"44","name":"金晓","party":"民革","gender":"女","position":"杭州八脉科技有限公司工程师兼董事"},{"id":"45","name":"周媛媛","party":"中共","gender":"女","position":"杭州市西湖国学馆执行馆长"},{"id":"46","name":"赵军","party":"九三学社","gender":"男","position":"浙江浣花斋文化艺术发展有限公司执行董事"},{"id":"47","name":"赵群伟","party":"群众","gender":"男","position":"杭州紫金港文化传播有限公司董事长、浙江大春传媒有限公司董事长、南宋书房主理人"},{"id":"48","name":"姚娅琼","party":"民进","gender":"女","position":"杭州特美刻实业有限公司 \n常务副总"},{"id":"49","name":"高艳","party":"民革","gender":"女","position":"国标资产管理（杭州）有限公司总经理"},{"id":"50","name":"涂小莉","party":"九三学社","gender":"女","position":"区投促局副局长（正处级）"},{"id":"51","name":"梁向明","party":"民建","gender":"男","position":"浙江圣铂建设发展有限公司董事长"},{"id":"52","name":"蔡旭荣","party":"无党派","gender":"男","position":"掌境文化艺术总监"},{"id":"53","name":"潘克倾","party":"中共","gender":"男","position":"浙江繁胜体育服务有限公司总经理"}]},{"groupName":"小营（26）","members":[{"id":"54","name":"冷晓辉","party":"中共","gender":"女","position":"小营街道党工委副书记"},{"id":"55","name":"王容峰","party":"致公党","gender":"男","position":"浙江泰乐通信技术有限公司董事长"},{"id":"56","name":"刘元凯","party":"群众","gender":"男","position":"浙江威龙葡萄酒销售有限公司总经理"},{"id":"57","name":"杜向群","party":"中共","gender":"女","position":"华数集团办公室副主任，华数（杭州）后勤服务有限公司党支部书记、执行董事、总经理"},{"id":"58","name":"杨丽英","party":"中共","gender":"女","position":"浙江浙经天策会计师事务所有限公司部门经理"},{"id":"59","name":"杨杰涛","party":"中共","gender":"男","position":"浙江明康工程咨询有限公司总经理"},{"id":"60","name":"邹欢金","party":"中共","gender":"男","position":"赞宇科技集团股份有限公司总经理"},{"id":"61","name":"汪利民","party":"中共","gender":"男","position":"市三医院党委副书记"},{"id":"62","name":"张艺群","party":"民建","gender":"女","position":"宅树懒管理咨询（杭州）有限公司总经理"},{"id":"63","name":"张建平","party":"中共","gender":"男","position":"杭绍台铁路有限公司副总工程师、运营管理部副部长"},{"id":"64","name":"陈仕会","party":"民建","gender":"男","position":"中国邮政储蓄银行杭州市分行小企业金融部负责人、风险经理"},{"id":"65","name":"陈屹一","party":"中共","gender":"男","position":"浙江大学医学院附属第一医院/党政办副主任"},{"id":"66","name":"陈丽丽","party":"中共","gender":"女","position":"杭州市娃哈哈幼儿园园长"},{"id":"67","name":"陈明晖","party":"中共","gender":"男","position":"浙江物产环保能源股份有限公司党委副书记、副董事长、总经理"},{"id":"68","name":"陈星","party":"中共","gender":"男","position":"浙江省茶叶集团股份有限公司党委书记、副总经理"},{"id":"69","name":"胡志强","party":"民盟","gender":"男","position":"杭州一本堂品牌管理有限公司董事长"},{"id":"70","name":"施俞刚","party":"无党派","gender":"男","position":"杭州花中城餐饮食品集团有限公司董事长"},{"id":"71","name":"施莉娜","party":"中共","gender":"女","position":"中国电信股份有限公司杭州分公司上城分局副局长"},{"id":"72","name":"徐跃峰","party":"九三学社","gender":"男","position":"九三学社杭州市委文教委副主任、上城区政协文史研究会秘书长"},{"id":"73","name":"黄明科","party":"群众","gender":"男","position":"浙江省基督教三自爱国运动委员会副主席兼秘书长；杭州市基督教三自爱国运动委员会常务副主席；思澄堂主任牧师"},{"id":"74","name":"葛芳民","party":"群众","gender":"女","position":"浙大二院网络医学中心主任"},{"id":"75","name":"韩霄波","party":"无党派","gender":"男","position":"杭州全要素科技服务有限公司董事长"},{"id":"76","name":"楼数","party":"中共","gender":"男","position":"中国人民财产保险股份有限公司浙江省分公司党委书记"},{"id":"77","name":"潘丽华","party":"中共","gender":"女","position":"区政协经济科技委员会主任"},{"id":"78","name":"叶嗒嗒","party":"群众","gender":"女","position":"杭州寿仙谷健康管理有限公司总经理"},{"id":"79","name":"张勇","party":"中共","gender":"男","position":"杭州联合农商银行党委委员、副行长"}]},{"groupName":"望江（22）","members":[{"id":"80","name":"毛静波","party":"中共","gender":"男","position":"望江街道党工委副书记"},{"id":"81","name":"丁黎","party":"无党派","gender":"女","position":"杭州方回春堂投资集团有限公司总经理"},{"id":"82","name":"马红","party":"中共","gender":"女","position":"区委统战部副部长"},{"id":"83","name":"王早晖","party":"中共","gender":"男","position":"区纪委副书记、区监委副主任"},{"id":"84","name":"王尉","party":"九三学社","gender":"男","position":"杭州中兴医院院长、九三学社副主委、省九三健康顾问团成员、杭州市医学会精神专业委员会委员、浙江工商大学硕士生导师"},{"id":"85","name":"毛雪波","party":"中共","gender":"男","position":"杭州爵优实业投资有限公司董事长"},{"id":"86","name":"吕昀","party":"中共","gender":"男","position":"浙江华日实业投资有限公司副总"},{"id":"87","name":"朱盈","party":"九三学社","gender":"女","position":"杭州文广集团西湖明珠频道制片人、主持人"},{"id":"88","name":"俞宁","party":"中共","gender":"男","position":"上城区政府办公室党组成员、副主任"},{"id":"89","name":"宋旭鏐","party":"民进","gender":"女","position":"杭州市上城区文化创意产业发展中心综合科科长"},{"id":"90","name":"宋红朋","party":"农工党","gender":"男","position":"上城区望江街道兴隆社区卫生服务站单位法人及负责人"},{"id":"91","name":"陆峰","party":"中共","gender":"女","position":"区政协文史和教文卫体委员会主任"},{"id":"92","name":"陈娟","party":"无党派","gender":"女","position":"杭州蓝熠智能科技有限公司总经理"},{"id":"93","name":"陈萍","party":"九三学社","gender":"男","position":"杭州电视台西湖明珠频道首席导演、文艺部副主任"},{"id":"94","name":"俞仲凯","party":"无党派","gender":"男","position":"杭州临空示范区管委会（钱江新城管委会）财务部副部长"},{"id":"95","name":"俞富根","party":"民进","gender":"男","position":"杭师大第一附属小学校长"},{"id":"96","name":"徐志清","party":"民进","gender":"男","position":"华语之声传媒（杭州）有限公司董事长"},{"id":"97","name":"蒋骥","party":"无党派","gender":"男","position":"杭州市建筑设计研究院有限公司总经理、总建筑师，区知联会副会长"},{"id":"98","name":"傅艺","party":"民进","gender":"女","position":"杭州文广集团西湖明珠频道主持人、制片人"},{"id":"99","name":"慈玲","party":"民盟","gender":"女","position":"浙江崭和望律师事务所负责人/主任/专职律师"},{"id":"100","name":"蔡肇颖","party":"中共","gender":"女","position":"上城区总工会副主席"},{"id":"101","name":"潘晓岑","party":"民革","gender":"男","position":"上城区司法局小营司法所所长"}]},{"groupName":"南星（26）","members":[{"id":"102","name":"游广敏","party":"中共","gender":"女","position":"南星街道党工委副书记"},{"id":"103","name":"方元","party":"民盟","gender":"女","position":"杭州市清河实验学校教师"},{"id":"104","name":"方晓阳","party":"中共","gender":"男","position":"浙江华云文化传播有限公司总编辑"},{"id":"105","name":"付选央","party":"中共","gender":"男","position":"区政协城建和人口资源环境委员会主任"},{"id":"106","name":"孙文祥","party":"无党派","gender":"男","position":"浙江省长三角资本研究院执行院长"},{"id":"107","name":"李友银","party":"九三学社","gender":"男","position":"杭州壹诺机电设备工程有限公司总经理"},{"id":"108","name":"李进\n（李崇进）","party":"群众","gender":"男","position":"杭州老玉皇宫道士"},{"id":"109","name":"李晓强","party":"民盟","gender":"男","position":"上城区南星街道社区卫生服务中心主任医师"},{"id":"110","name":"杨东","party":"中共","gender":"男","position":"区工商联书记"},{"id":"111","name":"吴江达","party":"中共","gender":"男","position":"杭州市上城区南星街道百穗老年食堂理事长"},{"id":"112","name":"吴航通","party":"中共","gender":"男","position":"杭州图强工程材料有限公司副董事长"},{"id":"113","name":"何晓菲","party":"无党派","gender":"女","position":"光达控股有限公司副总裁"},{"id":"114","name":"沈旭欣","party":"无党派","gender":"男","position":"敦和资产管理有限公司总经理助理"},{"id":"115","name":"陈杭闽","party":"群众","gender":"男","position":"杭州东箭实业集团有限公司董事长"},{"id":"116","name":"周立钢","party":"民建","gender":"男","position":"杭州博乐工业设计股份有限公司董事长"},{"id":"117","name":"胡杭东","party":"农工党","gender":"男","position":"南星街道社区治理服务中心副主任"},{"id":"118","name":"胡晓敏","party":"致公党","gender":"男","position":"杭州市上城区海归驿站服务中心主任"},{"id":"119","name":"宫旭","party":"民盟","gender":"男","position":"杭州宫壹文化创意有限公司、杭州积健体育策划有限公司董事长、总经理"},{"id":"120","name":"骆志明","party":"中共","gender":"男","position":"景澜酒店投资管理有限公司总经理"},{"id":"121","name":"高杰","party":"民建","gender":"男","position":"杭州玉皇山南停车管理有限公司董事长"},{"id":"122","name":"屠明珏","party":"无党派","gender":"男","position":"杭州明珏智远资产管理有限公司董事长"},{"id":"123","name":"童雁汝南","party":"无党派","gender":"男","position":"著名艺术家，策展人"},{"id":"124","name":"虞静","party":"无党派","gender":"女","position":"浙江乾鼎商贸有限公司董事长总经理"},{"id":"125","name":"董华迪","party":"群众","gender":"女","position":"凯泰资本投资者关系部执行总裁"},{"id":"126","name":"应啸","party":"无党派","gender":"男","position":"浙江南方建筑设计有限公司总经理助理"},{"id":"127","name":"张鹭翔","party":"中共","gender":"男","position":"杭州市玉皇山南基金小镇党工委书记、管理委员会主任"}]},{"groupName":"紫阳（19）","members":[{"id":"128","name":"王盈","party":"中共","gender":"女","position":"紫阳街道党工委副书记"},{"id":"129","name":"许利芳","party":"中共","gender":"女","position":"浙江省体育服务中心（省全民健身中心）副主任"},{"id":"130","name":"汪丹凤","party":"中共","gender":"女","position":"杭州千生汇科技有限公司副总经理"},{"id":"131","name":"沈军","party":"致公党","gender":"女","position":"区审计局总审计师"},{"id":"132","name":"张佳","party":"无党派","gender":"女","position":"浙江华城工贸有限公司总经理"},{"id":"133","name":"郭简","party":"无党派","gender":"女","position":"杭州建兰中学教师"},{"id":"134","name":"陶宏莉","party":"民革","gender":"女","position":"区府办"},{"id":"135","name":"龚晓丹","party":"民盟","gender":"女","position":"杭州浩途管理咨询有限公司总经理"},{"id":"136","name":"盛昕炜","party":"致公党","gender":"女","position":"上城区紫阳街道区域发展与治理中心副主任"},{"id":"137","name":"麻侃","party":"民建","gender":"男","position":"北京观韬中茂（杭州）律师事务所合伙人"},{"id":"138","name":"程婧莹","party":"中共","gender":"女","position":"杭州旅游集团战略中心（大项目中心）总监；吴山明美术馆馆长"},{"id":"139","name":"释廓忍","party":"群众","gender":"男","position":"杭州栖云寺监院"},{"id":"140","name":"缪先祥","party":"中共","gender":"男","position":"上城区教育评估与监测中心书记、主任"},{"id":"141","name":"瞿伟","party":"中共","gender":"女","position":"区政协委员工作委员会主任"},{"id":"142","name":"张剑峰","party":"中共","gender":"男","position":"杭州市公安局上城区分局党委副书记、政委、一级高级警长"},{"id":"143","name":"吴国庆","party":"中共","gender":"男","position":"杭州市上城区残疾人联合会党组书记、理事长"},{"id":"144","name":"许勇","party":"中共","gender":"男","position":"上城区发展和改革局党委副书记、副局长"},{"id":"145","name":"张文杰","party":"中共","gender":"男","position":"杭州市上城区消防救援大队政治教导员、党委书记"},{"id":"146","name":"陈一春","party":"中共","gender":"男","position":"上城区委统战部常务副部长、区民宗局局长、区侨办主任、区侨联主席"}]},{"groupName":"闸弄口（19）","members":[{"id":"147","name":"祝文雅","party":"中共","gender":"女","position":"闸弄口街道党工委副书记"},{"id":"148","name":"尹兆青","party":"农工党","gender":"男","position":"上城区乐创青少年社会工作服务中心主任"},{"id":"149","name":"冯新恩","party":"民进","gender":"女","position":"杭州市兰苑幼儿园副园长"},{"id":"150","name":"刘相玉","party":"九三学社","gender":"女","position":"杭州天恒投资建设管理有限公司副总经理"},{"id":"151","name":"江华平","party":"中共","gender":"男","position":"浙江波普环境服务有限公司董事长"},{"id":"152","name":"岑刚","party":"民建","gender":"男","position":"上城区文广旅体局社体中心主任"},{"id":"153","name":"邱杰","party":"农工党","gender":"男","position":"上城区内部审计指导服务中心主任"},{"id":"154","name":"余毅","party":"民建","gender":"男","position":"浙江省民建企业家协会/副秘书长"},{"id":"155","name":"张一良","party":"中共","gender":"男","position":"杭州铭品装饰工程有限公司董事长"},{"id":"156","name":"张伟良","party":"中共","gender":"男","position":"中国联合网络通信有限公司杭州联通党委办公室主任"},{"id":"157","name":"张琦","party":"民盟","gender":"女","position":"杭州天杭教育集团校长"},{"id":"158","name":"陆涛","party":"民建","gender":"男","position":"杭州茂轩经济信息咨询有限公司总经理"},{"id":"159","name":"陈璐","party":"无党派","gender":"女","position":"华数传媒网络有限拱墅拱墅分公司副总经理"},{"id":"160","name":"邵正刚","party":"民革","gender":"男","position":"上城区政协城建委副主任"},{"id":"161","name":"胡晓","party":"民建","gender":"男","position":"区司法局局长"},{"id":"162","name":"袁娜","party":"中共","gender":"女","position":"杭州市上城区人众科普服务中心主任"},{"id":"163","name":"梅中鹤","party":"民盟","gender":"男","position":"浙江广利工程咨询有限公司总工程师"},{"id":"164","name":"章超","party":"农工党","gender":"男","position":"区退役军人事务局局长"},{"id":"165","name":"章蔚郓","party":"民进","gender":"女","position":"浙江良渚蔬菜市场开发有限公司总裁"}]},{"groupName":"凯旋（21）","members":[{"id":"166","name":"徐灵峰","party":"中共","gender":"男","position":"四季青街道党工委副书记、办事处主任"},{"id":"167","name":"王芝芬","party":"群众","gender":"女","position":"杭州中坤电器有限公司业务经理"},{"id":"168","name":"包良军","party":"无党派","gender":"男","position":"杭州半岛净水设备有限公司董事长"},{"id":"169","name":"华剑波","party":"九三学社","gender":"男","position":"上城区政协办公室信息宣传科科长"},{"id":"170","name":"刘晓","party":"致公党","gender":"女","position":"上城区综合行政执法局四级主任科员"},{"id":"171","name":"许涛","party":"中共","gender":"男","position":"上城区教育局党委副书记、副局长"},{"id":"172","name":"孙益芳","party":"民进","gender":"女","position":"杭州市上城区民政局工会副主席"},{"id":"173","name":"寿丽","party":"无党派","gender":"女","position":"网盟电子商务有限公司董事长"},{"id":"174","name":"杨连江","party":"民革","gender":"男","position":"上城区退役军人服务中心主任"},{"id":"175","name":"张瑞旭","party":"九三学社","gender":"女","position":"上城区委统战部干部"},{"id":"176","name":"胡丹丹","party":"民盟","gender":"女","position":"上城区市场监督管理局执法指导科科长"},{"id":"177","name":"俞敏","party":"中共","gender":"男","position":"杭州市市场监管局副局长、二级巡视员"},{"id":"178","name":"俞鑫红","party":"民进","gender":"男","position":"上城区教育学院教研员"},{"id":"179","name":"凌栋","party":"无党派","gender":"男","position":"浙江诺巢控股有限公司董事长"},{"id":"180","name":"盛国祥","party":"中共","gender":"男","position":"杭州中艺生态环境工程有限公司总经理"},{"id":"181","name":"章炜颖","party":"中共","gender":"女","position":"凯旋街道社区卫生服务中心主任"},{"id":"182","name":"谢慧淼","party":"民革","gender":"女","position":"浙江中医药大学芳香生物精油与疗法研究院院长；杭州谢小猫中医门诊部创始人；杭州慧连信息科技有限公司董事长"},{"id":"183","name":"熊义勤","party":"中共","gender":"男","position":"浙江大学新农村杂志 常务副社长"},{"id":"184","name":"缪渭川","party":"无党派","gender":"男","position":"浙江五联律师事务所首席合伙人、杭州上城凯旋民商事法律调解中心主任"},{"id":"185","name":"张碧云","party":"无党派","gender":"女","position":"浙江工业大学视觉传达与数字媒体硕士生导师"},{"id":"186","name":"吴国荣","party":"中共","gender":"男","position":"上城区财政局党委副书记、副局长"}]},{"groupName":"采荷（19）","members":[{"id":"187","name":"赵丹晨","party":"中共","gender":"女","position":"采荷街道党工委副书记（正处级）"},{"id":"188","name":"王叶华","party":"民进","gender":"女","position":"浙江大学医学院附属邵逸夫医院干部保健中心常务副主任"},{"id":"189","name":"方俊平","party":"民革","gender":"男","position":"杭州耕香生物科技有限公司董事长总经理"},{"id":"190","name":"李陟峰","party":"中共","gender":"男","position":"国网浙江省电力公司首席职员"},{"id":"191","name":"汪政","party":"民革","gender":"男","position":"浙江泰杭律师事务所主任"},{"id":"192","name":"沈波","party":"无党派","gender":"女","position":"光大银行总行投顾，杭州分行投顾总监"},{"id":"193","name":"陆洋","party":"民革","gender":"男","position":"杭州金投保险经纪有限公司高客业务负责人"},{"id":"194","name":"陈奕东","party":"无党派","gender":"男","position":"区卫健局办公室主任"},{"id":"195","name":"周珍","party":"群众","gender":"女","position":"浙江天和典尚实业集团有限公司副总裁财务总监、杭州兰珍品牌管理有限公司总经理"},{"id":"196","name":"胡斌","party":"民建","gender":"男","position":"北京盈科（杭州）律师事务所管委会副主任"},{"id":"197","name":"俞富康","party":"中共","gender":"男","position":"杭州西湖美术院执行院长俞富康书画艺术中心主任"},{"id":"198","name":"洪紫林","party":"群众","gender":"男","position":"坚持我的服饰（杭州）股份有限公司董事长"},{"id":"199","name":"骆丁辉","party":"民建","gender":"男","position":"浙江信联企业服务有限公司总经理"},{"id":"200","name":"聂建波","party":"民盟","gender":"男","position":"国网浙江省电力有限公司新型电力系统碳评估与电能碳协同实验室副主任、高级工程师、高级经济师"},{"id":"201","name":"钱磊","party":"群众","gender":"男","position":"四季青服装集团副总经理"},{"id":"202","name":"董岷","party":"中共","gender":"男","position":"新阔投资公司总经理/意法商业集团"},{"id":"203","name":"韩新宇","party":"致公党","gender":"男","position":"上城区投促局副局长"},{"id":"204","name":"缪永平","party":"无党派","gender":"男","position":"中国移动通信集团终端有限公司浙江分公司综合分析室经理"},{"id":"205","name":"李晓华","party":"中共","gender":"男","position":"杭州银行副行长、浙江省欧美同学会理事、上城区欧美同学会副会长"}]},{"groupName":"四季青（32）","members":[{"id":"206","name":"李岗","party":"中共","gender":"男","position":"四季青街道党工委副书记"},{"id":"207","name":"马学军","party":"群众","gender":"男","position":"杭州市伊斯兰教协会副秘书长，杭州清真寺寺管会主任"},{"id":"208","name":"王军","party":"无党派","gender":"男","position":"毕马威企业咨询（中国）有限公司\n毕马威浙江省首席合伙人"},{"id":"209","name":"王晓婷","party":"中共","gender":"女","position":"嘉悦物产集团有限公司董事长"},{"id":"210","name":"王梦婷","party":"致公党","gender":"女","position":"杭州阳光艺术培训学校校长"},{"id":"211","name":"王翔","party":"中共","gender":"男","position":"四季青街道钱塘社区党委书记、居委会主任"},{"id":"212","name":"任亚","party":"民进","gender":"女","position":"杭州市景和幼儿园园长"},{"id":"213","name":"李罡","party":"中共","gender":"男","position":"中国移动通信集团浙江有限公司上城分公司 副总经理"},{"id":"214","name":"吴昊","party":"无党派","gender":"男","position":"三贝药业有限公司法人、浙江宝仁堂国医馆第五代中医传承人"},{"id":"215","name":"余丽丽","party":"民进","gender":"女","position":"上城区四季青街道办事处副主任"},{"id":"216","name":"沈春妮","party":"中共","gender":"女","position":"杭州市上城区文化馆副研究馆员，中国美术学院继续教育学院人物高研班特聘教师，浙江省美术家协会会员"},{"id":"217","name":"张忠成","party":"群众","gender":"男","position":"杭州市基督教三自爱国运动委员会主席，崇一堂主任牧师"},{"id":"218","name":"张欣","party":"民盟","gender":"女","position":"信泰人寿保险股份有限公司首席核赔师"},{"id":"219","name":"张健","party":"中共","gender":"女","position":"区委组织部副部长、区委人才办常务副主任"},{"id":"220","name":"张频","party":"无党派","gender":"女","position":"杭州健行同偕科技有限公司执行董事"},{"id":"221","name":"陈健","party":"中共","gender":"男","position":"物产中大公用环境投资有限公司党总支书记、董事长"},{"id":"222","name":"陈海军","party":"中共","gender":"男","position":"四季青苏杭服装市场有限公司党支部书记、总经理"},{"id":"223","name":"陈铭","party":"民建","gender":"女","position":"杭州快房传媒有限公司副总经理"},{"id":"224","name":"陈琳","party":"无党派","gender":"女","position":"立信会计师事务所（特殊普通合伙）浙江分所战略发展部总监"},{"id":"225","name":"陈磊","party":"民盟","gender":"男","position":"北京大成（杭州）律师事务所中国区高级合伙人"},{"id":"226","name":"胡晓振","party":"九三学社","gender":"男","position":"大普信用评级股份有限公司创始人"},{"id":"227","name":"姜爱意","party":"中共","gender":"女","position":"浙江鑫亚控股集团有限公司副书记"},{"id":"228","name":"费雄文","party":"中共","gender":"女","position":"杭州杭丝时装进出口有限公司财务部经理"},{"id":"229","name":"姚华俊","party":"中共","gender":"男","position":"浙江同富特美刻家居用品股份有限公司董事长"},{"id":"230","name":"骆鉴湖","party":"中共","gender":"女","position":"中天控股集团总裁"},{"id":"231","name":"黄晓莉","party":"群众","gender":"女","position":"南京银行新城支行行长"},{"id":"232","name":"黄晓芹","party":"民建","gender":"女","position":"天虹浙江区政企发展总监"},{"id":"233","name":"龚真真","party":"中共","gender":"女","position":"浙江省水库管理中心四级调研员"},{"id":"234","name":"盛史超","party":"致公党","gender":"男","position":"中国致公党杭州市委员会调研处二级主任科员"},{"id":"235","name":"虞军红","party":"农工党","gender":"男","position":"浙江君安世纪律师事务所高级合伙人"},{"id":"236","name":"张晓波","party":"中共","gender":"男","position":"平安健康保险股份有限公司浙江分公司副总经理"},{"id":"237","name":"尚晓红","party":"群众","gender":"女","position":"杭州宋宴餐饮有限公司董事长"}]},{"groupName":"笕桥（21）","members":[{"id":"238","name":"阮骏","party":"中共","gender":"男","position":"上城区笕桥街道党工委副书记"},{"id":"239","name":"丁宙胜","party":"中共","gender":"男","position":"浙江建安检测研究院有限公司董事长"},{"id":"240","name":"王勇","party":"民盟","gender":"男","position":"上城区财政局数字财政管理科科长"},{"id":"241","name":"包崇来","party":"中共","gender":"男","position":"浙江省农业科学院蔬菜研究所所长"},{"id":"242","name":"许春波","party":"中共","gender":"男","position":"杭州市上城区民族团结促进会副会长，杭州市书刊发行业协会会长"},{"id":"243","name":"李冬梅","party":"致公党","gender":"女","position":"上城区人社局就业管理服务中心主任"},{"id":"244","name":"何肖龙","party":"民革","gender":"男","position":"浙江泰杭律师事务所高级合伙人"},{"id":"245","name":"余丹凤","party":"民进","gender":"女","position":"新浪浙江总编"},{"id":"246","name":"应科","party":"民盟","gender":"男","position":"杭州市建设职业学校副校长"},{"id":"247","name":"张叶平","party":"中共","gender":"女","position":"上城区笕桥街道天新社区党总支书记、居委会主任"},{"id":"248","name":"张智利","party":"农工党","gender":"女","position":"杭州市澎汇小学校长"},{"id":"249","name":"陈小龙","party":"中共","gender":"男","position":"浙江省农科院成果转化部部长、书记"},{"id":"250","name":"陈宇","party":"无党派","gender":"男","position":"杭州木村实业有限公司董事长"},{"id":"251","name":"陈雄","party":"农工党","gender":"男","position":"浙江国叶健康养老产业有限公司"},{"id":"252","name":"夏叶丽","party":"民盟","gender":"女","position":"杭州市钱江外国语实验学校附属幼儿园园长"},{"id":"253","name":"高艳芳","party":"农工党","gender":"女","position":"紫阳街道社区卫生服务中心主任"},{"id":"254","name":"蒋平樑","party":"中共","gender":"男","position":"浙江中得农业集团副总裁"},{"id":"255","name":"鲁佳波","party":"中共","gender":"男","position":"杭州永立机动车检测服务有限公司总经理"},{"id":"256","name":"蔡晓霞","party":"无党派","gender":"女","position":"杭州米果集团控股有限公司执行总裁"},{"id":"257","name":"沈小华","party":"中共","gender":"女","position":"万事利集团工会主席、杭州市上城区总工会副主席（兼职）"},{"id":"258","name":"杨欣蔚","party":"中共","gender":"男","position":"杭州市上城区民政局党委副书记、副局长"}]},{"groupName":"彭埠（20）","members":[{"id":"259","name":"叶慧明","party":"中共","gender":"男","position":"区社会治理中心常务副主任"},{"id":"260","name":"马健","party":"中共","gender":"男","position":"上海勘察设计研究院（集团）有限公司浙江分院院长"},{"id":"261","name":"蓝炜铭","party":"中共","gender":"男","position":"上城区人武部中效副部长兼军事科长"},{"id":"262","name":"王鹏","party":"致公党","gender":"男","position":"上城区彭埠街道总工会副主席"},{"id":"263","name":"严素娟","party":"民建、中共","gender":"女","position":"上海市邮政管理局党组成员、副局长"},{"id":"264","name":"李美群","party":"农工党","gender":"女","position":"易海创腾信息科技（杭州）有限公司执行董事"},{"id":"265","name":"余卫东","party":"无党派","gender":"男","position":"杭州怡思园艺有限公司法人"},{"id":"266","name":"陈忠义","party":"无党派","gender":"男","position":"宏彬（杭州）体育发展有限公司"},{"id":"267","name":"周世安","party":"无党派","gender":"男","position":"浙江众安建设集团有限公司董事长"},{"id":"268","name":"周建卫","party":"中共","gender":"男","position":"杭州第六中学书记、校长"},{"id":"269","name":"胡伟强","party":"无党派","gender":"男","position":"杭州吉达控股有限公司总经理"},{"id":"270","name":"胡琦","party":"群众","gender":"男","position":"东通岩土科技股份有限公司技术总监"},{"id":"271","name":"施海红","party":"民盟","gender":"女","position":"杭州市四季青小学校长"},{"id":"272","name":"倪永钧","party":"中共","gender":"男","position":"浙江杰立建设集团有限公司项目经理、区总工会副主席（兼职）"},{"id":"273","name":"徐小平","party":"民革","gender":"男","position":"杭州金奥电梯有限公司总经理"},{"id":"274","name":"童春霞","party":"无党派","gender":"女","position":"浙江华威建材集团有限公司总经理"},{"id":"275","name":"鲍一鹏","party":"中共","gender":"男","position":"上城区法院党组副书记、常务副院长"},{"id":"276","name":"潘乐屹","party":"民建","gender":"男","position":"大安柏屹（浙江）医疗科技有限公司董事长"},{"id":"277","name":"潘爱斌","party":"无党派","gender":"男","position":"杭州平治信息技术股份有限公司副总经理、董事会秘书"},{"id":"278","name":"何力强","party":"中共","gender":"男","position":"上城区卫生健康局党委副书记、副局长"}]},{"groupName":"九堡（37）","members":[{"id":"279","name":"胡建清","party":"中共","gender":"男","position":"上城区九堡街道党工委副书记"},{"id":"299","name":"毛江文","party":"民进","gender":"男","position":"杭州万昌市政园林有限公司总经理"},{"id":"290","name":"朱苗","party":"民革","gender":"女","position":"杭州网娘电子商务股份有限公司董事长；上城区新生代企业家联谊会第一届理事会副会长；杭州千岛湖商会第四届副会长；"},{"id":"302","name":"刘海峰","party":"无党派","gender":"男","position":"浙江一亿中流信息科技有限公司董事长"},{"id":"280","name":"许新霞","party":"民革","gender":"女","position":"上城区人民法院九堡法庭副庭长"},{"id":"289","name":"李国祥","party":"群众","gender":"男","position":"浙江宸兴设备租赁有限公司总经理"},{"id":"281","name":"李祖胜","party":"农工党","gender":"男","position":"上城区卫健局副局长"},{"id":"291","name":"吴谦","party":"农工党","gender":"男","position":"浙江清华长三角研究院国创办副主任"},{"id":"292","name":"余文科","party":"民进","gender":"男","position":"杭州天冠科技有限公司董事长"},{"id":"282","name":"汪尧","party":"民建","gender":"男","position":"杭州银行股份有限公司九堡支行（行长）"},{"id":"303","name":"陈钇名","party":"无党派","gender":"男","position":"杭州以实各谷时装科技有限公司总经理"},{"id":"283","name":"周伟","party":"无党派","gender":"男","position":"杭州滴水公益服务中心会长"},{"id":"284","name":"郑宇","party":"无党派","gender":"男","position":"国家林业和草原局华东调查规划院副总工程师"},{"id":"285","name":"赵庭尉","party":"民建","gender":"男","position":"杭州常港科技服务有限公司 董事长"},{"id":"286","name":"胡敏","party":"群众","gender":"男","position":"浙江东杭控股集团有限公司执行总裁"},{"id":"287","name":"程微","party":"民盟","gender":"女","position":"上城区九堡街道党建群团办专技八级，民盟上城四支部委员"},{"id":"288","name":"傅昕辉","party":"民进","gender":"男","position":"区国控管理有限公司总经理、总审计师"},{"id":"296","name":"魏文锋","party":"民建","gender":"男","position":"杭州老爸评测科技股份有限公司董事长"},{"id":"297","name":"王剑","party":"中共","gender":"男","position":"杭州钱塘智慧城党工委副书记、管委会主任"},{"id":"298","name":"王盛","party":"中共","gender":"男","position":"华硼中子科技（杭州）有限公司首席科学家、董事长；俄罗斯科学院外籍院士；国家级领军人才；西安交通大学教授、博士生导师；浙江省十二、三届人大代表。"},{"id":"300","name":"方晓丽","party":"民建","gender":"女","position":"浙江喻晓网络科技有限公司董事长"},{"id":"301","name":"冯敏","party":"群众","gender":"男","position":"杭州如涵文化传播有限公司董事长"},{"id":"310","name":"杨冬强","party":"无党派","gender":"男","position":"杭州华塑科技股份有限公司董事长"},{"id":"293","name":"应庆园","party":"中共","gender":"女","position":"奥的斯机电电梯有限公司党委书记 党委书记\n战略客户及大项目&政府关系部部长"},{"id":"311","name":"宋新民","party":"中共","gender":"男","position":"浙江搜道网络技术有限公司董事长、CEO"},{"id":"312","name":"张仕权","party":"中共","gender":"男","position":"杭州海兴电力科技股份有限公司总经理"},{"id":"309","name":"陈建恩","party":"致公党","gender":"男","position":"得力集团有限公司副总裁"},{"id":"304","name":"陈瑞贵","party":"中共","gender":"男","position":"浙江电融数据技术有限公司董事长"},{"id":"305","name":"赵明","party":"民进","gender":"男","position":"杭州莱凡网络科技有限公司董事长"},{"id":"294","name":"姜学英","party":"中共","gender":"女","position":"杭州安旭生物科技股份有限公司副董事长"},{"id":"313","name":"聂世元","party":"无党派","gender":"男","position":"浙江沸蓝信息发展有限公司副总经理"},{"id":"295","name":"聂明军","party":"中共","gender":"男","position":"杭州柯林电气股份有限公司副总经理"},{"id":"306","name":"倪晓东","party":"中共","gender":"男","position":"浙江东仁堂集团有限公司董事长"},{"id":"307","name":"高浪华","party":"无党派","gender":"男","position":"高浪控股股份有限公司董事长兼CEO"},{"id":"308","name":"黄晓煌","party":"无党派","gender":"男","position":"杭州群核信息技术有限公司联合创始人兼董事长"},{"id":"314","name":"董娜","party":"中共","gender":"女","position":"东方电气长三角（杭州）创新研究院有限公司院长；中央企业科技青年联合会 委员;东方电气中央研究院党委委员;东方电气长三角党支部书记。"},{"id":"315","name":"裘琦箐","party":"九三学社","gender":"女","position":"杭州捷尔思阻燃化工有限公司董事长助理"}]},{"groupName":"丁兰（24）","members":[{"id":"316","name":"倪勇卿","party":"中共","gender":"男","position":"丁兰街道党工委副书记"},{"id":"317","name":"赵韵红","party":"中共","gender":"女","position":"区政协办公室主任"},{"id":"318","name":"刘祖辉","party":"中共","gender":"男","position":"上城交警大队教导员"},{"id":"319","name":"吴韵","party":"致公党","gender":"女","position":"浙江中弘国际旅行社有限公司总经理"},{"id":"320","name":"何亮","party":"中共","gender":"男","position":"区检察院党组副书记、常务副检察长"},{"id":"321","name":"沈洁","party":"无党派","gender":"女","position":"杭州花糖品牌管理有限公司总经理"},{"id":"322","name":"陆筱雅","party":"民盟","gender":"女","position":"浙江稠州商业银行杭州分行行长"},{"id":"323","name":"陈国华","party":"中共","gender":"男","position":"杭州帅冠金属有限公司、杭州晴日实业有限公司董事长，杭州丁桥大塘股份经济合作社副董事长"},{"id":"324","name":"陈晓亮","party":"民革","gender":"男","position":"浙江绿康医养集团副总裁兼杭州绿康医院院长"},{"id":"325","name":"金超奇","party":"民革","gender":"男","position":"浙江钱杭建设有限公司总经理"},{"id":"326","name":"赵婷","party":"民革","gender":"女","position":"北京中伦（杭州）律师事务所权益合伙人，浙江省并购联合会副会长，浙江大学光华法学院实务导师，浙江省工商联金融顾问，杭州仲裁委员会仲裁员"},{"id":"327","name":"余向平","party":"中共","gender":"男","position":"中共上城区委宣传部常务副部长、上城区社会科学界联合会主席；上城区欧美同学会副会长"},{"id":"328","name":"胡伟祥","party":"民建","gender":"男","position":"杭州金色池塘生态农业观光有限公司总经理"},{"id":"329","name":"郦政为","party":"群众","gender":"男","position":"杭州尚坤科技有限公司董事长"},{"id":"330","name":"俞宙","party":"九三学社","gender":"男","position":"杭州百蝶文化艺术策划有限公司执行董事兼总经理"},{"id":"331","name":"高艳霞","party":"民革","gender":"女","position":"上城区丁兰街道办事处妇联主席"},{"id":"332","name":"龚云玉","party":"中共","gender":"女","position":"桃源茶庄业主"},{"id":"333","name":"斯梦龙","party":"农工党","gender":"男","position":"龙元建设集团股份有限公司副总裁"},{"id":"334","name":"焦国平","party":"中共","gender":"男","position":"浙江电联通信机房工程技术有限公司副总经理"},{"id":"335","name":"释念性","party":"群众","gender":"男","position":"杭州市上城区佛教协会会长，龙居寺监院"},{"id":"336","name":"樊立刚","party":"九三学社","gender":"男","position":"浙江中联耀信房地产估价有限公司、高级合伙人、副总经理"},{"id":"337","name":"俞浙晖","party":"中共","gender":"女","position":"上城区妇联党组副书记、副主席"},{"id":"338","name":"张瑞光","party":"中共","gender":"男","position":"上城区综合行政执法局党委副书记"},{"id":"339","name":"朱剑文","party":"中共","gender":"男","position":"北京德恒（杭州）律师事务所党委副书记、管委会主任"}]}]};
+window.__STUDIOS__  = {"title":"2026年上城区政协委员工作室名单","total":50,"studios":[{"id":1,"name":"政协湖滨小组委员工作室","leader":"查靖","address":"上城区羊血弄10号"},{"id":2,"name":"政协清波小组委员工作室","leader":"徐洁","address":"上城区清波街道蔡官巷35号三楼"},{"id":3,"name":"政协小营小组委员工作室","leader":"冷晓辉","address":"杭州市上城区建国南路98号小营街道办事处"},{"id":4,"name":"政协望江小组委员工作室","leader":"毛静波","address":"上城区翡翠海岸1幢6号"},{"id":5,"name":"政协南星小组委员工作室","leader":"游广敏","address":"上城区目术塘创意园2号楼7楼"},{"id":6,"name":"紫阳街道“三一”委员工作室","leader":"王盈","address":"上城区金钗袋巷79号"},{"id":7,"name":"闸弄口街道“基层治理”委员工作室","leader":"祝文雅","address":"上城区闸弄口街道党群服务中心"},{"id":8,"name":"政协凯旋小组委员工作室","leader":"金志伟","address":"上城区凤起东路127号"},{"id":9,"name":"采荷街道“幸福19”委员工作室","leader":"赵丹晨","address":"上城区采荷街道洁莲社区"},{"id":10,"name":"政协四季青小组委员工作室","leader":"李岗","address":"上城区民心路280号平安金融中心B座3楼"},{"id":11,"name":"政协笕桥小组委员工作室","leader":"阮骏","address":"上城区笕桥街道政协会议室"},{"id":12,"name":"政协彭埠小组委员工作室","leader":"任渊","address":"上城区S2杭甬高速附近罗家老宅"},{"id":13,"name":"政协九堡小组委员工作室","leader":"胡建清","address":"上城区九乔街与杭乔路交叉口"},{"id":14,"name":"政协丁兰小组委员工作室","leader":"倪勇卿","address":"上城区临丁路699号丁丁兰街道办事处5号楼4楼"},{"id":15,"name":"张瑞旭委员工作室","leader":"张瑞旭","address":"上城区凯旋街道凯益荟208室"},{"id":16,"name":"缪渭川委员工作室","leader":"缪渭川","address":"上城区凯旋街道南肖埠社区"},{"id":17,"name":"虞军红委员工作室","leader":"虞军红","address":"上城区运新花苑运新社区"},{"id":18,"name":"商业服务智库委员工作室","leader":"姚华俊、黄晓芹","address":"上城区新业路8号UDC时代大厦3楼"},{"id":19,"name":"俞富康宋韵文化委员工作室","leader":"俞富康","address":"上城区凯旋路151号"},{"id":20,"name":"爱馨文化公益委员工作室","leader":"杨洁","address":"上城区南山路198号（杭州书房）"},{"id":21,"name":"“文润童心”委员工作室","leader":"周媛媛","address":"杭州市上城区清波街道府学巷8号"},{"id":22,"name":"“老爸好商量”委员工作室","leader":"俞富根","address":"上城区四宜路180号"},{"id":23,"name":"侨见未来委员工作室","leader":"胡晓敏","address":"上城区兰巷101-104号（山蜂书房）"},{"id":24,"name":"宋韵老字号委员工作室","leader":"屠明珏","address":"上城区江城路865号满江红大酒店二楼杭帮菜文化展览馆"},{"id":25,"name":"幸福邻里委员工作室","leader":"尹兆青","address":"上城区闸弄口街道红梅社区"},{"id":26,"name":"大健康委员工作室","leader":"谢慧淼","address":"上城区凯旋路与凯林巷交叉口凯西社区"},{"id":27,"name":"大成委员工作室","leader":"陈磊","address":"上城区钱江路1366号华润大厦A座18层"},{"id":28,"name":"“邻聚力”委员工作室","leader":"余丹凤","address":"上城区凤起东路203号中豪五福天地商业中心B座2幢21层"},{"id":29,"name":"东港社区委员工作室","leader":"蒋平樑","address":"上城区笕桥街道东港社区"},{"id":30,"name":"建和社区委员工作室","leader":"周建卫","address":"上城区彭埠街道建和社区"},{"id":31,"name":"杨柳郡社区委员工作室","leader":"王鹏","address":"上城区九和路660号绿城杨柳郡"},{"id":32,"name":"长睦幸福湾委员工作室","leader":"龚云玉","address":"上城区丁兰街道长睦苑社区"},{"id":33,"name":"同心·共富委员工作室","leader":"吴韵","address":"上城区丁兰街道皋城村文化礼堂"},{"id":34,"name":"乐动新声委员工作室","leader":"俞宙","address":"上城区金峰大厦1503室"},{"id":35,"name":"茗荟聚智委员工作室","leader":"王容峰","address":"上城区大井巷30-4号"},{"id":36,"name":"上城区政协无党派界别委员工作室","leader":"凌栋","address":"上城区凯旋路247-1号4楼"},{"id":37,"name":"上城区政协工会界别委员工作室","leader":"蔡肇颖","address":"上城区工人文化宫（太平门直街458号）"},{"id":38,"name":"上城区政协社会福利和保障界别委员工作室","leader":"吴国庆","address":"上城区凯旋路125号（特有爱·幸福体验馆）"},{"id":39,"name":"有意思委员工作室","leader":"方晓阳","address":"上城区复兴南街130号"},{"id":40,"name":"春泥委员工作室","leader":"沈春妮","address":"上城区采荷路34号杭州市上城区社会组织服务中心5楼"},{"id":41,"name":"两岸一家亲委员工作室","leader":"陆雯","address":"上城区解放路189号-2"},{"id":42,"name":"“视觉之思”委员工作室","leader":"何晓菲","address":"上城区虎玉路16-18号"},{"id":43,"name":"“育共体 阳光行”委员工作室","leader":"王梦婷","address":"上城区景芳三区58幢新社区邻里中心"},{"id":44,"name":"非遗委员工作室","leader":"胡志强","address":"上城区大井巷55号"},{"id":45,"name":"乐医汇委员工作室","leader":"潘乐屹","address":"上城区同协路1279号西子智慧产业园8号楼401室（B电梯）"},{"id":46,"name":"全民阅读委员工作室","leader":"赵群伟","address":"上城区中山中路6号"},{"id":47,"name":"健康九久委员工作室","leader":"李祖胜","address":"上城区九堡街道蓝桥卫生服务站"},{"id":48,"name":"智汇钱潮委员工作室","leader":"沈波","address":"上城区小院书房"},{"id":49,"name":"环境资源和农业界别委员工作室","leader":"熊义勤、骆鉴湖","address":"浙江大学华家池校区新农村杂志3楼\n杭州市上城区城星路中天国开大厦19楼"},{"id":50,"name":"漱玉集委员工作室","leader":"王盈","address":"上城区紫阳街道闻潮路77号"}]};
+window.__PLATFORM__ = {"title":"上城区政协委员工作室履职平台","district":"上城区","city":"杭州市","overview":"上城区政协按照\"向基层延伸覆盖\"和\"不建机构建机制\"工作要求，坚持党建引领，强化委员工作室\"三位一体\"建设，牢牢把握功能定位，立足区域发展实际，以打造\"一室一品\"为特色，深化\"楼宇商圈\"\"宋韵文化\"和\"全龄特有爱\"公益慈善品牌建设，着力构建宽领域、多层次、常态化的协商体系，不断提升委员工作室辨识度和影响力，密切与界别群众的联系，凝聚社会各界共识，助推区域经济高质量发展。","statistics":{"total_studios":50,"coverage":"履职平台街道委员小组全覆盖","annual_rating":true,"star_ratings_2025":{"five_star":25,"four_star":17,"three_star":4}},"studios":[{"id":1,"name":"政协湖滨小组委员工作室","leader":"查靖","address":"上城区羊血弄10号"},{"id":2,"name":"政协清波小组委员工作室","leader":"徐洁","address":"上城区清波街道蔡官巷35号三楼"},{"id":3,"name":"政协小营小组委员工作室","leader":"冷晓辉","address":"杭州市上城区建国南路98号小营街道办事处"},{"id":4,"name":"政协望江小组委员工作室","leader":"毛静波","address":"上城区翡翠海岸1幢6号"},{"id":5,"name":"政协南星小组委员工作室","leader":"游广敏","address":"上城区目术塘创意园2号楼7楼"},{"id":6,"name":"紫阳街道\"三一\"委员工作室","leader":"王盈","address":"上城区金钗袋巷79号"},{"id":7,"name":"闸弄口街道\"基层治理\"委员工作室","leader":"祝文雅","address":"上城区闸弄口街道党群服务中心"},{"id":8,"name":"政协凯旋小组委员工作室","leader":"金志伟","address":"上城区凤起东路127号"},{"id":9,"name":"采荷街道\"幸福19\"委员工作室","leader":"赵丹晨","address":"上城区采荷街道洁莲社区"},{"id":10,"name":"政协四季青小组委员工作室","leader":"李岗","address":"上城区民心路280号平安金融中心B座3楼"},{"id":11,"name":"政协笕桥小组委员工作室","leader":"阮骏","address":"上城区笕桥街道政协会议室"},{"id":12,"name":"政协彭埠小组委员工作室","leader":"任渊","address":"上城区S2杭甬高速附近罗家老宅"},{"id":13,"name":"政协九堡小组委员工作室","leader":"胡建清","address":"上城区九乔街与杭乔路交叉口"},{"id":14,"name":"政协丁兰小组委员工作室","leader":"倪勇卿","address":"上城区临丁路699号丁丁兰街道办事处5号楼4楼"},{"id":15,"name":"张瑞旭委员工作室","leader":"张瑞旭","address":"上城区凯旋街道凯益荟208室"},{"id":16,"name":"缪渭川委员工作室","leader":"缪渭川","address":"上城区凯旋街道南肖埠社区"},{"id":17,"name":"虞军红委员工作室","leader":"虞军红","address":"上城区运新花苑运新社区"},{"id":18,"name":"商业服务智库委员工作室","leader":"姚华俊、黄晓芹","address":"上城区新业路8号UDC时代大厦3楼"},{"id":19,"name":"俞富康宋韵文化委员工作室","leader":"俞富康","address":"上城区凯旋路151号"},{"id":20,"name":"爱馨文化公益委员工作室","leader":"杨洁","address":"上城区南山路198号（杭州书房）"},{"id":21,"name":"\"文润童心\"委员工作室","leader":"周媛媛","address":"杭州市上城区清波街道府学巷8号"},{"id":22,"name":"\"老爸好商量\"委员工作室","leader":"俞富根","address":"上城区四宜路180号"},{"id":23,"name":"侨见未来委员工作室","leader":"胡晓敏","address":"上城区兰巷101-104号（山蜂书房）"},{"id":24,"name":"宋韵老字号委员工作室","leader":"屠明珏","address":"上城区江城路865号满江红大酒店二楼杭帮菜文化展览馆"},{"id":25,"name":"幸福邻里委员工作室","leader":"尹兆青","address":"上城区闸弄口街道红梅社区"},{"id":26,"name":"大健康委员工作室","leader":"谢慧淼","address":"上城区凯旋路与凯林巷交叉口凯西社区"},{"id":27,"name":"大成委员工作室","leader":"陈磊","address":"上城区钱江路1366号华润大厦A座18层"},{"id":28,"name":"\"邻聚力\"委员工作室","leader":"余丹凤","address":"上城区凤起东路203号中豪五福天地商业中心B座2幢21层"},{"id":29,"name":"东港社区委员工作室","leader":"蒋平樑","address":"上城区笕桥街道东港社区"},{"id":30,"name":"建和社区委员工作室","leader":"周建卫","address":"上城区彭埠街道建和社区"},{"id":31,"name":"杨柳郡社区委员工作室","leader":"王鹏","address":"上城区九和路660号绿城杨柳郡"},{"id":32,"name":"长睦幸福湾委员工作室","leader":"龚云玉","address":"上城区丁兰街道长睦苑社区"},{"id":33,"name":"同心·共富委员工作室","leader":"吴韵","address":"上城区丁兰街道皋城村文化礼堂"},{"id":34,"name":"乐动新声委员工作室","leader":"俞宙","address":"上城区金峰大厦1503室"},{"id":35,"name":"茗荟聚智委员工作室","leader":"王容峰","address":"上城区大井巷30-4号"},{"id":36,"name":"上城区政协无党派界别委员工作室","leader":"凌栋","address":"上城区凯旋路247-1号4楼"},{"id":37,"name":"上城区政协工会界别委员工作室","leader":"蔡肇颖","address":"上城区工人文化宫（太平门直街458号）"},{"id":38,"name":"上城区政协社会福利和保障界别委员工作室","leader":"吴国庆","address":"上城区凯旋路125号（特有爱·幸福体验馆）"},{"id":39,"name":"有意思委员工作室","leader":"方晓阳","address":"上城区复兴南街130号"},{"id":40,"name":"春泥委员工作室","leader":"沈春妮","address":"上城区采荷路34号杭州市上城区社会组织服务中心5楼"},{"id":41,"name":"两岸一家亲委员工作室","leader":"陆雯","address":"上城区解放路189号-2"},{"id":42,"name":"\"视觉之思\"委员工作室","leader":"何晓菲","address":"上城区虎玉路16-18号"},{"id":43,"name":"\"育共体 阳光行\"委员工作室","leader":"王梦婷","address":"上城区景芳三区58幢新社区邻里中心"},{"id":44,"name":"非遗委员工作室","leader":"胡志强","address":"上城区大井巷55号"},{"id":45,"name":"乐医汇委员工作室","leader":"潘乐屹","address":"上城区同协路1279号西子智慧产业园8号楼401室（B电梯）"},{"id":46,"name":"全民阅读委员工作室","leader":"赵群伟","address":"上城区中山中路6号"},{"id":47,"name":"健康九久委员工作室","leader":"李祖胜","address":"上城区九堡街道蓝桥卫生服务站"},{"id":48,"name":"智汇钱潮委员工作室","leader":"沈波","address":"上城区小院书房"},{"id":49,"name":"环境资源和农业界别委员工作室","leader":"熊义勤、骆鉴湖","address":"浙江大学华家池校区新农村杂志3楼；杭州市上城区城星路中天国开大厦19楼"},{"id":50,"name":"漱玉集委员工作室","leader":"王盈","address":"上城区紫阳街道闻潮路77号"}]};
+window.__PLAN__     = {"title":"政协杭州市上城区委员会2026年度各界别履职计划","plan":[{"jiebei":"中共界别","activities":[{"name":"国际人才交流活动","type":"主题活动","plannedTime":"1月"},{"name":"加强人才引育，助推CID建设专题协商会","type":"专题协商","plannedTime":"9月"}]},{"jiebei":"无党派人士界别","activities":[{"name":"“她”力量·在路上——与新就业女性共庆妇女节主题沙龙","type":"主题沙龙","plannedTime":"3月"},{"name":"界别委员公益惠民活动","type":"公益咨询服务","plannedTime":"5月"},{"name":"无党派界别协商议事会","type":"专题协商","plannedTime":"9月"}]},{"jiebei":"共青团、青联界别","activities":[{"name":"送福送春联活动","type":"惠民服务","plannedTime":"1月"},{"name":"“书香润初心·青年话担当”读书交流会","type":"主题活动","plannedTime":"4月"}]},{"jiebei":"工会界别","activities":[{"name":"“铜韵传承·锻打时光”铜雕艺术体验日活动","type":"互动体验","plannedTime":"4月"},{"name":"上城区职工毅行活动","type":"主题活动","plannedTime":"4月"}]},{"jiebei":"妇联界别","activities":[{"name":"“品宋韵·话传承·谋创新” 文化专题活动","type":"主题活动","plannedTime":"5月"},{"name":"金融赋能发展协商会","type":"专题协商","plannedTime":"9月"}]},{"jiebei":"工商联界别","activities":[{"name":"营商环境专项调研协商","type":"专题协商","plannedTime":"7月"},{"name":"委员企业现代治理互学活动","type":"主题活动","plannedTime":"12月"}]},{"jiebei":"科技、科协界别","activities":[{"name":"开展关于推进OPC发展的调研","type":"专题调研","plannedTime":"3月"},{"name":"开展关于加快推进科技创新和产业创新深度融合的协商会","type":"专题协商","plannedTime":"10月"}]},{"jiebei":"侨、台界别","activities":[{"name":"“侨助发展 AI赋能经济”——走进群核科技","type":"主题活动","plannedTime":"4月"},{"name":"“融通世界 文化互鉴”活动","type":"主题活动","plannedTime":"6月"},{"name":"侨助发展专题协商会","type":"专题协商","plannedTime":"9月"}]},{"jiebei":"新闻文体界别","activities":[{"name":"上城区人文经济创新发展专题协商会","type":"专题协商","plannedTime":"8月"},{"name":"宋韵文化“两创”交流分享活动","type":"参观交流","plannedTime":"10月"}]},{"jiebei":"经济界别","activities":[{"name":"开局“十五五”——经济高质量发展专题协商会","type":"专题协商","plannedTime":"4月"},{"name":"创新高地专题调研活动","type":"主题活动","plannedTime":"9月"}]},{"jiebei":"环境资源和农业界别","activities":[{"name":"“城村共生绿美共富”城乡融合体验实践分享会","type":"主题活动","plannedTime":"4月"},{"name":"上城去城市更新盘活存量建筑的举措协商会","type":"专题协商","plannedTime":"10月"}]},{"jiebei":"教育界别","activities":[{"name":"青少年模拟政协委员活动","type":"主题活动","plannedTime":"9月"},{"name":"教育系统政协委员座谈会","type":"专题协商","plannedTime":"11月"}]},{"jiebei":"医卫界别","activities":[{"name":"界别委员惠民健体服务","type":"名中医讲座、适宜技术应用、义诊","plannedTime":"5月"},{"name":"医卫界别协商议事会","type":"专题协商","plannedTime":"9月"}]},{"jiebei":"社会福利和保障界别","activities":[{"name":"爱心服务活动","type":"志愿服务","plannedTime":"6月"},{"name":"爱心义卖活动","type":"爱心义卖","plannedTime":"11月"}]},{"jiebei":"民族、宗教界别","activities":[{"name":"红十字会博爱周市集","type":"主题活动","plannedTime":"5月"},{"name":"居民楼外立面整治协调会","type":"专题协商","plannedTime":"8月"}]},{"jiebei":"特邀界别","activities":[{"name":"区垃圾分类工作专题协商","type":"专题协商","plannedTime":"5月"},{"name":"城市道路健康体检观察主题活动","type":"主题活动","plannedTime":"9月"}]}]};
+window.__ACT_PHOTOS__= {"title":"界别活动照片","count":50,"photos":[{"filename":"353cd94f8a4dc02a2e821a5ba8ab043.webp","jiebei":"10经济","path":"./photos/jiebei/10经济/353cd94f8a4dc02a2e821a5ba8ab043.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/10经济/353cd94f8a4dc02a2e821a5ba8ab043.webp"},{"filename":"619ee9289835d103c435f174c1e0cff.webp","jiebei":"10经济","path":"./photos/jiebei/10经济/619ee9289835d103c435f174c1e0cff.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/10经济/619ee9289835d103c435f174c1e0cff.webp"},{"filename":"3f7343aec8231bde22a668a4e17d149a.webp","jiebei":"11环境资源和农业","path":"./photos/jiebei/11环境资源和农业/3f7343aec8231bde22a668a4e17d149a.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/11环境资源和农业/3f7343aec8231bde22a668a4e17d149a.webp"},{"filename":"42e4ebbcbe8d12cf29a4876baecaca2a.webp","jiebei":"11环境资源和农业","path":"./photos/jiebei/11环境资源和农业/42e4ebbcbe8d12cf29a4876baecaca2a.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/11环境资源和农业/42e4ebbcbe8d12cf29a4876baecaca2a.webp"},{"filename":"82cf6d0fbeb3c41a443b837ff9927617.webp","jiebei":"11环境资源和农业","path":"./photos/jiebei/11环境资源和农业/82cf6d0fbeb3c41a443b837ff9927617.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/11环境资源和农业/82cf6d0fbeb3c41a443b837ff9927617.webp"},{"filename":"db8232e0c5d40a94e9fbcf8c9dfaee8.webp","jiebei":"11环境资源和农业","path":"./photos/jiebei/11环境资源和农业/db8232e0c5d40a94e9fbcf8c9dfaee8.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/11环境资源和农业/db8232e0c5d40a94e9fbcf8c9dfaee8.webp"},{"filename":"2f41c28d4b53804fb60bb6ef196c54a4.webp","jiebei":"12教育","path":"./photos/jiebei/12教育/2f41c28d4b53804fb60bb6ef196c54a4.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/12教育/2f41c28d4b53804fb60bb6ef196c54a4.webp"},{"filename":"IMG_2126.webp","jiebei":"12教育","path":"./photos/jiebei/12教育/IMG_2126.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/12教育/IMG_2126.webp"},{"filename":"IMG20240527105848.webp","jiebei":"13医卫","path":"./photos/jiebei/13医卫/IMG20240527105848.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/13医卫/IMG20240527105848.webp"},{"filename":"IMG20240527161315.webp","jiebei":"13医卫","path":"./photos/jiebei/13医卫/IMG20240527161315.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/13医卫/IMG20240527161315.webp"},{"filename":"IMG20240527170959.webp","jiebei":"13医卫","path":"./photos/jiebei/13医卫/IMG20240527170959.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/13医卫/IMG20240527170959.webp"},{"filename":"IMG_0853.HEIC.webp","jiebei":"13医卫","path":"./photos/jiebei/13医卫/IMG_0853.HEIC.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/13医卫/IMG_0853.HEIC.webp"},{"filename":"区政府副主席范国良与政协委员参观社会福利和保障界别委员工作室.webp","jiebei":"14社会福利和保障","path":"./photos/jiebei/14社会福利和保障/区政府副主席范国良与政协委员参观社会福利和保障界别委员工作室.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/14社会福利和保障/区政府副主席范国良与政协委员参观社会福利和保障界别委员工作室.webp"},{"filename":"社会福利和保障界别委员联系界别群众参加党纪学习教育.webp","jiebei":"14社会福利和保障","path":"./photos/jiebei/14社会福利和保障/社会福利和保障界别委员联系界别群众参加党纪学习教育.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/14社会福利和保障/社会福利和保障界别委员联系界别群众参加党纪学习教育.webp"},{"filename":"联动邵逸夫医院，开展“以爱之名”等残疾人画展及手工艺品义卖活动.webp","jiebei":"14社会福利和保障","path":"./photos/jiebei/14社会福利和保障/联动邵逸夫医院，开展“以爱之名”等残疾人画展及手工艺品义卖活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/14社会福利和保障/联动邵逸夫医院，开展“以爱之名”等残疾人画展及手工艺品义卖活动.webp"},{"filename":"IMG_20240315_085702.webp","jiebei":"15民宗","path":"./photos/jiebei/15民宗/IMG_20240315_085702.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/15民宗/IMG_20240315_085702.webp"},{"filename":"IMG_20240618_095251.webp","jiebei":"15民宗","path":"./photos/jiebei/15民宗/IMG_20240618_095251.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/15民宗/IMG_20240618_095251.webp"},{"filename":"与商户开展座谈.webp","jiebei":"16特邀","path":"./photos/jiebei/16特邀/与商户开展座谈.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/16特邀/与商户开展座谈.webp"},{"filename":"开展读书会.webp","jiebei":"16特邀","path":"./photos/jiebei/16特邀/开展读书会.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/16特邀/开展读书会.webp"},{"filename":"现场调研德寿宫附近停车泊位情况.webp","jiebei":"16特邀","path":"./photos/jiebei/16特邀/现场调研德寿宫附近停车泊位情况.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/16特邀/现场调研德寿宫附近停车泊位情况.webp"},{"filename":"现场调研湖滨步行街营商环境提升项目.webp","jiebei":"16特邀","path":"./photos/jiebei/16特邀/现场调研湖滨步行街营商环境提升项目.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/16特邀/现场调研湖滨步行街营商环境提升项目.webp"},{"filename":"针对德寿宫周边一件事情况进行座谈.webp","jiebei":"16特邀","path":"./photos/jiebei/16特邀/针对德寿宫周边一件事情况进行座谈.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/16特邀/针对德寿宫周边一件事情况进行座谈.webp"},{"filename":"2022.12.06 中共界别委员交流活动.webp","jiebei":"1中共","path":"./photos/jiebei/1中共/2022.12.06 中共界别委员交流活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/1中共/2022.12.06 中共界别委员交流活动.webp"},{"filename":"2024.02.02 区政协一届三次会议中共界别小组讨论会.webp","jiebei":"1中共","path":"./photos/jiebei/1中共/2024.02.02 区政协一届三次会议中共界别小组讨论会.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/1中共/2024.02.02 区政协一届三次会议中共界别小组讨论会.webp"},{"filename":"参加老旧小区物业提质协商议事.webp","jiebei":"2无党派","path":"./photos/jiebei/2无党派/参加老旧小区物业提质协商议事.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/2无党派/参加老旧小区物业提质协商议事.webp"},{"filename":"无党派界别赴区司法局调研涉外法律服务有关工作 .webp","jiebei":"2无党派","path":"./photos/jiebei/2无党派/无党派界别赴区司法局调研涉外法律服务有关工作 .webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/2无党派/无党派界别赴区司法局调研涉外法律服务有关工作 .webp"},{"filename":"范国良副主席为老字号工作室揭牌.webp","jiebei":"2无党派","path":"./photos/jiebei/2无党派/范国良副主席为老字号工作室揭牌.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/2无党派/范国良副主席为老字号工作室揭牌.webp"},{"filename":"范国良副主席参加无党派界别“洞悉当前宏观经济态势与战略投资机遇”主题分享活动.webp","jiebei":"2无党派","path":"./photos/jiebei/2无党派/范国良副主席参加无党派界别“洞悉当前宏观经济态势与战略投资机遇”主题分享活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/2无党派/范国良副主席参加无党派界别“洞悉当前宏观经济态势与战略投资机遇”主题分享活动.webp"},{"filename":"重阳节开展为老服务.webp","jiebei":"2无党派","path":"./photos/jiebei/2无党派/重阳节开展为老服务.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/2无党派/重阳节开展为老服务.webp"},{"filename":"IMG_20240531_160417.webp","jiebei":"3共青团、青联","path":"./photos/jiebei/3共青团、青联/IMG_20240531_160417.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/3共青团、青联/IMG_20240531_160417.webp"},{"filename":"mmexport1717153124428.webp","jiebei":"3共青团、青联","path":"./photos/jiebei/3共青团、青联/mmexport1717153124428.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/3共青团、青联/mmexport1717153124428.webp"},{"filename":"mmexport1717153126963.webp","jiebei":"3共青团、青联","path":"./photos/jiebei/3共青团、青联/mmexport1717153126963.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/3共青团、青联/mmexport1717153126963.webp"},{"filename":"mmexport1717153128393.webp","jiebei":"3共青团、青联","path":"./photos/jiebei/3共青团、青联/mmexport1717153128393.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/3共青团、青联/mmexport1717153128393.webp"},{"filename":"2024年5月6日 上工大讲堂.webp","jiebei":"4工会","path":"./photos/jiebei/4工会/2024年5月6日 上工大讲堂.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/4工会/2024年5月6日 上工大讲堂.webp"},{"filename":"5月25日2024年上城区职工毅行大会.webp","jiebei":"4工会","path":"./photos/jiebei/4工会/5月25日2024年上城区职工毅行大会.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/4工会/5月25日2024年上城区职工毅行大会.webp"},{"filename":"5月25日2024年上城区职工毅行大会2.webp","jiebei":"4工会","path":"./photos/jiebei/4工会/5月25日2024年上城区职工毅行大会2.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/4工会/5月25日2024年上城区职工毅行大会2.webp"},{"filename":"妇联界别召集人吕仕琼开展“七一”慰问.webp","jiebei":"5妇联","path":"./photos/jiebei/5妇联/妇联界别召集人吕仕琼开展“七一”慰问.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/5妇联/妇联界别召集人吕仕琼开展“七一”慰问.webp"},{"filename":"妇联界别开展“品宋韵文化  做精致丽人”三八节活动.webp","jiebei":"5妇联","path":"./photos/jiebei/5妇联/妇联界别开展“品宋韵文化  做精致丽人”三八节活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/5妇联/妇联界别开展“品宋韵文化  做精致丽人”三八节活动.webp"},{"filename":"妇联界别调研牵头人高艳霞带队调研白马庄巾帼共富工坊，为调研报告积累素材.webp","jiebei":"5妇联","path":"./photos/jiebei/5妇联/妇联界别调研牵头人高艳霞带队调研白马庄巾帼共富工坊，为调研报告积累素材.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/5妇联/妇联界别调研牵头人高艳霞带队调研白马庄巾帼共富工坊，为调研报告积累素材.webp"},{"filename":"政协一届三次会议，妇联界别民宗界别合影.webp","jiebei":"5妇联","path":"./photos/jiebei/5妇联/政协一届三次会议，妇联界别民宗界别合影.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/5妇联/政协一届三次会议，妇联界别民宗界别合影.webp"},{"filename":"主体培训班合影.webp","jiebei":"6工商联","path":"./photos/jiebei/6工商联/主体培训班合影.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/6工商联/主体培训班合影.webp"},{"filename":"深圳浙江商会考察钱二图片.webp","jiebei":"6工商联","path":"./photos/jiebei/6工商联/深圳浙江商会考察钱二图片.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/6工商联/深圳浙江商会考察钱二图片.webp"},{"filename":"组织民企500强部分人员参观考察钱二.webp","jiebei":"6工商联","path":"./photos/jiebei/6工商联/组织民企500强部分人员参观考察钱二.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/6工商联/组织民企500强部分人员参观考察钱二.webp"},{"filename":"mmexport1711700143984.webp","jiebei":"7科技、科协","path":"./photos/jiebei/7科技、科协/mmexport1711700143984.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/7科技、科协/mmexport1711700143984.webp"},{"filename":"mmexport1711702029812.webp","jiebei":"7科技、科协","path":"./photos/jiebei/7科技、科协/mmexport1711702029812.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/7科技、科协/mmexport1711702029812.webp"},{"filename":"WechatIMG31.webp","jiebei":"8侨、台","path":"./photos/jiebei/8侨、台/WechatIMG31.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/8侨、台/WechatIMG31.webp"},{"filename":"WechatIMG32.webp","jiebei":"8侨、台","path":"./photos/jiebei/8侨、台/WechatIMG32.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/8侨、台/WechatIMG32.webp"},{"filename":"WechatIMG33.webp","jiebei":"8侨、台","path":"./photos/jiebei/8侨、台/WechatIMG33.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/8侨、台/WechatIMG33.webp"},{"filename":"2023年8月，参观亚运会博物馆.webp","jiebei":"9新闻文体","path":"./photos/jiebei/9新闻文体/2023年8月，参观亚运会博物馆.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/9新闻文体/2023年8月，参观亚运会博物馆.webp"},{"filename":"2023年8月，参观亚运会博物馆2.webp","jiebei":"9新闻文体","path":"./photos/jiebei/9新闻文体/2023年8月，参观亚运会博物馆2.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/3. 界别基本情况/活动照片/9新闻文体/2023年8月，参观亚运会博物馆2.webp"}]};
+window.__STU_PHOTOS__= {"title":"委员工作室活动照片","count":26,"photos":[{"filename":"1-政协湖滨小组委员工作室-学习考察新质生产力一-万事利科创中心.webp","path":"./photos/studios/1-政协湖滨小组委员工作室-学习考察新质生产力一-万事利科创中心.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/1-政协湖滨小组委员工作室-学习考察新质生产力一-万事利科创中心.webp"},{"filename":"10-全民阅读委员工作室-举办宋韵美学体验活动.webp","path":"./photos/studios/10-全民阅读委员工作室-举办宋韵美学体验活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/10-全民阅读委员工作室-举办宋韵美学体验活动.webp"},{"filename":"11-爱馨文化公益委员工作室-爱馨文化公益委员工作室.webp","path":"./photos/studios/11-爱馨文化公益委员工作室-爱馨文化公益委员工作室.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/11-爱馨文化公益委员工作室-爱馨文化公益委员工作室.webp"},{"filename":"12-“老爸好商量”委员工作室-发扬重视家庭教育优良传统，助力孩子健康快乐成长，举办亲子运动会.webp","path":"./photos/studios/12-“老爸好商量”委员工作室-发扬重视家庭教育优良传统，助力孩子健康快乐成长，举办亲子运动会.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/12-“老爸好商量”委员工作室-发扬重视家庭教育优良传统，助力孩子健康快乐成长，举办亲子运动会.webp"},{"filename":"13-有意思委员工作室-工作室委员与社区居民代表召开民生座谈会，听取居民对小区提升、菜场改造、停车难等问题的意见建议.webp","path":"./photos/studios/13-有意思委员工作室-工作室委员与社区居民代表召开民生座谈会，听取居民对小区提升、菜场改造、停车难等问题的意见建议.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/13-有意思委员工作室-工作室委员与社区居民代表召开民生座谈会，听取居民对小区提升、菜场改造、停车难等问题的意见建议.webp"},{"filename":"14-侨见未来委员工作室-关于社区居民空调安装纠纷的专项协商会.webp","path":"./photos/studios/14-侨见未来委员工作室-关于社区居民空调安装纠纷的专项协商会.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/14-侨见未来委员工作室-关于社区居民空调安装纠纷的专项协商会.webp"},{"filename":"15-张瑞旭委员工作室-举办委员工作室跨代共融日活动.webp","path":"./photos/studios/15-张瑞旭委员工作室-举办委员工作室跨代共融日活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/15-张瑞旭委员工作室-举办委员工作室跨代共融日活动.webp"},{"filename":"16-大健康委员工作室-传承国粹，践行公益，走进社区开展健康宣教义诊活动.webp","path":"./photos/studios/16-大健康委员工作室-传承国粹，践行公益，走进社区开展健康宣教义诊活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/16-大健康委员工作室-传承国粹，践行公益，走进社区开展健康宣教义诊活动.webp"},{"filename":"17-俞富康宋韵文化委员工作室-国际艺术交流送中国“福”.webp","path":"./photos/studios/17-俞富康宋韵文化委员工作室-国际艺术交流送中国“福”.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/17-俞富康宋韵文化委员工作室-国际艺术交流送中国“福”.webp"},{"filename":"18-春泥委员工作室-两会期间迎新送福、送春联.webp","path":"./photos/studios/18-春泥委员工作室-两会期间迎新送福、送春联.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/18-春泥委员工作室-两会期间迎新送福、送春联.webp"},{"filename":"19-“邻聚力”委员工作室-凝聚社会公益慈善之心，开展“让每个孩子像花儿一样绽放”主题论坛.webp","path":"./photos/studios/19-“邻聚力”委员工作室-凝聚社会公益慈善之心，开展“让每个孩子像花儿一样绽放”主题论坛.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/19-“邻聚力”委员工作室-凝聚社会公益慈善之心，开展“让每个孩子像花儿一样绽放”主题论坛.webp"},{"filename":"2-政协清波小组委员工作室-幸福清波，文化送福，联动中国美院为清波派出所、禁毒所、清波居民送新年祝福.webp","path":"./photos/studios/2-政协清波小组委员工作室-幸福清波，文化送福，联动中国美院为清波派出所、禁毒所、清波居民送新年祝福.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/2-政协清波小组委员工作室-幸福清波，文化送福，联动中国美院为清波派出所、禁毒所、清波居民送新年祝福.webp"},{"filename":"20-建和社区委员工作室-党建引领，做好点滴惠民小事，走访慰问九和人家独居老人.webp","path":"./photos/studios/20-建和社区委员工作室-党建引领，做好点滴惠民小事，走访慰问九和人家独居老人.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/20-建和社区委员工作室-党建引领，做好点滴惠民小事，走访慰问九和人家独居老人.webp"},{"filename":"21-健康九久委员工作室-召开健康普及专题座谈会.webp","path":"./photos/studios/21-健康九久委员工作室-召开健康普及专题座谈会.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/21-健康九久委员工作室-召开健康普及专题座谈会.webp"},{"filename":"22-同心·共富委员工作室-举行“乡村音乐节”，用实用管用的好点子，助力乡村振兴.webp","path":"./photos/studios/22-同心·共富委员工作室-举行“乡村音乐节”，用实用管用的好点子，助力乡村振兴.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/22-同心·共富委员工作室-举行“乡村音乐节”，用实用管用的好点子，助力乡村振兴.webp"},{"filename":"23-茗荟聚智委员工作室-开展“茶韵议事”交流活动.webp","path":"./photos/studios/23-茗荟聚智委员工作室-开展“茶韵议事”交流活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/23-茗荟聚智委员工作室-开展“茶韵议事”交流活动.webp"},{"filename":"24-“育共体 阳光行”委员工作室-“小小政协委员”青少年模拟政协活动.webp","path":"./photos/studios/24-“育共体 阳光行”委员工作室-“小小政协委员”青少年模拟政协活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/24-“育共体 阳光行”委员工作室-“小小政协委员”青少年模拟政协活动.webp"},{"filename":"25-乐动新声委员工作室-委员工作室.webp","path":"./photos/studios/25-乐动新声委员工作室-委员工作室.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/25-乐动新声委员工作室-委员工作室.webp"},{"filename":"3-政协紫阳“三一”委员工作室-践行“委员说·委员做”，锚定“两个先行”目标，领跑“基层白治”之路.webp","path":"./photos/studios/3-政协紫阳“三一”委员工作室-践行“委员说·委员做”，锚定“两个先行”目标，领跑“基层白治”之路.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/3-政协紫阳“三一”委员工作室-践行“委员说·委员做”，锚定“两个先行”目标，领跑“基层白治”之路.webp"},{"filename":"4-采荷街道“幸福19”委员工作室-“疗愈经济分享体验会”活动.webp","path":"./photos/studios/4-采荷街道“幸福19”委员工作室-“疗愈经济分享体验会”活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/4-采荷街道“幸福19”委员工作室-“疗愈经济分享体验会”活动.webp"},{"filename":"5-政协四季青小组委员工作室-市区县三级联动，召开“投早投小投科技”专题协商会.webp","path":"./photos/studios/5-政协四季青小组委员工作室-市区县三级联动，召开“投早投小投科技”专题协商会.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/5-政协四季青小组委员工作室-市区县三级联动，召开“投早投小投科技”专题协商会.webp"},{"filename":"6-政协彭埠小组委员工作室-邀请非遗传承人开展非遗制作体验活动.webp","path":"./photos/studios/6-政协彭埠小组委员工作室-邀请非遗传承人开展非遗制作体验活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/6-政协彭埠小组委员工作室-邀请非遗传承人开展非遗制作体验活动.webp"},{"filename":"7-工会界别委员工作室-开展“美丽大讲堂”活动.webp","path":"./photos/studios/7-工会界别委员工作室-开展“美丽大讲堂”活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/7-工会界别委员工作室-开展“美丽大讲堂”活动.webp"},{"filename":"8-社会福利和保障界别委员工作室-残疾人之家的义卖活动.webp","path":"./photos/studios/8-社会福利和保障界别委员工作室-残疾人之家的义卖活动.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/8-社会福利和保障界别委员工作室-残疾人之家的义卖活动.webp"},{"filename":"9-“文润童心”委员工作室-传承和弘扬中华优秀传统文化，探索乡村优秀传统文化启蒙教育新路径.webp","path":"./photos/studios/9-“文润童心”委员工作室-传承和弘扬中华优秀传统文化，探索乡村优秀传统文化启蒙教育新路径.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/9-“文润童心”委员工作室-传承和弘扬中华优秀传统文化，探索乡村优秀传统文化启蒙教育新路径.webp"},{"filename":"之前做的折页，照片都在上面，供参考.webp","path":"./photos/studios/之前做的折页，照片都在上面，供参考.webp","url":"file:///C:/Users/HWH/Desktop/the lab report of web/classwork/政协委员通/data/5. 委员履职平台/之前做的折页，照片都在上面，供参考.webp"}]};
+</script>
+
+<script type="text/babel">
+const {useState, useMemo, useCallback, useRef, useEffect} = React;
+
+/* ── nav config ── */
+const NAV = [
+  {id:'home',     icon:'🏛',  label:'首页'},
+  {id:'members',  icon:'👤',  label:'委员之家'},
+  {id:'district', icon:'🗺',  label:'街道小组'},
+  {id:'jiebei',   icon:'⭐',  label:'界别风采'},
+  {id:'consult',  icon:'🤝',  label:'协商民主'},
+  {id:'platform', icon:'📋',  label:'履职平台'},
+  {id:'studios',  icon:'🏢',  label:'委员工作室'},
+  {id:'plan',     icon:'📅',  label:'履职计划'},
+];
+
+/* ── Image component with fallback ── */
+function Img({src, alt='', label='', className=''}){
+  const [err, setErr] = useState(false);
+  return err ? (
+    <div className={`img-fallback ${className}`}>
+      <span style={{fontSize:28}}>🖼</span>
+      <span>{label || alt || '图片'}</span>
+    </div>
+  ) : (
+    <img src={src} alt={alt} className={className}
+      onError={()=>setErr(true)} loading="lazy"/>
+  );
+}
+
+/* ── Photo grid ── */
+function PhotoGrid({photos, maxShow=20}){
+  const [show, setShow] = useState(maxShow);
+  const items = photos.slice(0, show);
+  return (
+    <div>
+      <div className="photo-grid">
+        {items.map((p,i)=>(
+          <div className="photo-item" key={i}>
+            <Img src={p.url} alt={p.filename} label={p.jiebei||p.filename} />
+            {(p.jiebei||p.filename) &&
+              <div className="photo-label">{p.jiebei||p.filename}</div>}
+          </div>
+        ))}
+      </div>
+      {photos.length > show &&
+        <button className="filter-btn" style={{marginTop:16}}
+          onClick={()=>setShow(s=>s+20)}>
+          加载更多 ({photos.length - show} 张剩余)
+        </button>}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   PAGE: HOME
+   ══════════════════════════════════ */
+function PageHome(){
+  const plat = window.__PLATFORM__;
+  const mem  = window.__MEMBERS__;
+  const stu  = window.__STUDIOS__;
+  const plan = window.__PLAN__;
+  const totalMembers = mem.groups.reduce((s,g)=>s+g.members.length,0);
+  const totalActs    = plan.plan.reduce((s,g)=>s+g.activities.length,0);
+  const st = plat.statistics;
+
+  // Latest activities from plan
+  const recentActs = plan.plan.slice(0,6).flatMap(g=>
+    g.activities.slice(0,2).map(a=>({...a, jiebei:g.jiebei}))
+  ).slice(0,8);
+
+  return (
+    <div className="page-enter">
+      <div className="hero">
+        <div className="hero-eyebrow"><div className="hero-dot"/>政协杭州市上城区委员会</div>
+        <div className="hero-title">政协委员通 · 履职服务平台</div>
+        <div className="hero-sub">
+          汇聚全区 {totalMembers} 名政协委员 · {stu.total} 个工作室 · {totalActs} 项年度履职计划<br/>
+          {plat.district}政协 · {new Date().getFullYear()} 年度数据版本
+        </div>
+      </div>
+
+      <div className="stat-row">
+        <div className="stat-card"><div className="stat-icon">👥</div><div className="stat-num">{totalMembers}</div><div className="stat-label">在册政协委员</div></div>
+        <div className="stat-card"><div className="stat-icon">🗺</div><div className="stat-num">{mem.groups.length}</div><div className="stat-label">街道委员小组</div></div>
+        <div className="stat-card"><div className="stat-icon">🏢</div><div className="stat-num">{stu.total}</div><div className="stat-label">委员工作室</div></div>
+        <div className="stat-card"><div className="stat-icon">⭐</div><div className="stat-num">{st.star_ratings_2025.five_star}</div><div className="stat-label">五星工作室</div></div>
+        <div className="stat-card"><div className="stat-icon">🌟</div><div className="stat-num">{st.star_ratings_2025.four_star}</div><div className="stat-label">四星工作室</div></div>
+        <div className="stat-card"><div className="stat-icon">📅</div><div className="stat-num">{totalActs}</div><div className="stat-label">年度履职计划</div></div>
+      </div>
+
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:24}}>
+        <div className="sec">
+          <div className="sec-hd"><div className="sec-title"><div className="sec-bar"/>工作室星级分布</div></div>
+          <div style={{background:'var(--surface)',borderRadius:'var(--r-lg)',padding:20,border:'1px solid var(--border)'}}>
+            {[
+              {label:'五星工作室',val:st.star_ratings_2025.five_star,max:stu.total,emoji:'⭐⭐⭐⭐⭐'},
+              {label:'四星工作室',val:st.star_ratings_2025.four_star,max:stu.total,emoji:'⭐⭐⭐⭐'},
+              {label:'三星工作室',val:st.star_ratings_2025.three_star,max:stu.total,emoji:'⭐⭐⭐'},
+            ].map(r=>(
+              <div className="prog-row" key={r.label}>
+                <div className="prog-label">{r.label}</div>
+                <div className="prog-bar"><div className="prog-fill" style={{width:`${r.val/r.max*100}%`}}/></div>
+                <div className="prog-val">{r.val}</div>
+              </div>
+            ))}
+            <p style={{fontSize:12,color:'var(--text3)',marginTop:12}}>数据来源：2025年度星级评定结果</p>
+          </div>
+        </div>
+
+        <div className="sec">
+          <div className="sec-hd"><div className="sec-title"><div className="sec-bar"/>近期履职动态</div></div>
+          <div className="timeline">
+            {recentActs.map((a,i)=>(
+              <div className="tl-item" key={i}>
+                <div className="tl-dot"/>
+                <div>
+                  <div className="tl-name">{a.name}</div>
+                  <div className="tl-meta">{a.jiebei} · {a.type} · {a.plannedTime}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="sec" style={{marginTop:24}}>
+        <div className="sec-hd"><div className="sec-title"><div className="sec-bar"/>平台简介</div></div>
+        <div style={{background:'var(--surface)',borderRadius:'var(--r-lg)',padding:20,border:'1px solid var(--border)',lineHeight:1.9,color:'var(--text1)',fontSize:14}}>
+          {plat.overview}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   PAGE: MEMBERS
+   ══════════════════════════════════ */
+function PageMembers(){
+  const {groups} = window.__MEMBERS__;
+  const [search, setSearch] = useState('');
+  const [group,  setGroup]  = useState('all');
+  const [selRow, setSelRow] = useState(null);
+
+  const allMembers = useMemo(()=>
+    groups.flatMap(g=>g.members.map(m=>({...m, groupName:g.groupName}))),
+  []);
+
+  const filtered = useMemo(()=>{
+    let arr = group === 'all' ? allMembers : allMembers.filter(m=>m.groupName===group);
+    if(search.trim()){
+      const q = search.trim();
+      arr = arr.filter(m=>
+        m.name.includes(q) || m.position.includes(q) || m.party.includes(q)
+      );
+    }
+    return arr;
+  },[search,group,allMembers]);
+
+  return (
+    <div className="page-enter">
+      <div className="hero">
+        <div className="hero-eyebrow"><div className="hero-dot"/>委员名录</div>
+        <div className="hero-title">委员之家</div>
+        <div className="hero-sub">全区 {allMembers.length} 名政协委员 · 共 {groups.length} 个街道分组</div>
+      </div>
+      <div className="search-bar">
+        <div className="search-wrap">
+          <span className="search-icon">🔍</span>
+          <input className="search-input" placeholder="搜索委员姓名、单位、党派…"
+            value={search} onChange={e=>setSearch(e.target.value)}/>
+        </div>
+        <div className="filter-btns">
+          <button className={`filter-btn${group==='all'?' active':''}`} onClick={()=>setGroup('all')}>全部</button>
+          {groups.map(g=>(
+            <button key={g.groupName}
+              className={`filter-btn${group===g.groupName?' active':''}`}
+              onClick={()=>setGroup(g.groupName)}>
+              {g.groupName}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{marginBottom:12,fontSize:13,color:'var(--text3)'}}>共 {filtered.length} 人</div>
+      <div className="tbl-wrap">
+        <table>
+          <thead><tr><th>序号</th><th>姓名</th><th>党派</th><th>性别</th><th>所属小组</th><th>工作单位及职务</th></tr></thead>
+          <tbody>
+            {filtered.map((m,i)=>(
+              <tr key={i} className={`row-hover${selRow===i?' row-selected':''}`}
+                onClick={()=>setSelRow(i===selRow?null:i)} style={{cursor:'pointer'}}>
+                <td><span className="tag tag-gray">{m.id||i+1}</span></td>
+                <td><strong>{m.name}</strong></td>
+                <td><span className="tag tag-blue">{m.party}</span></td>
+                <td>{m.gender}</td>
+                <td><span className="tag tag-red">{m.groupName}</span></td>
+                <td style={{maxWidth:280}}>{m.position}</td>
+              </tr>
+            ))}
+            {filtered.length===0 && <tr><td colSpan={6} style={{textAlign:'center',padding:32,color:'var(--text3)'}}>未找到匹配的委员</td></tr>}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   PAGE: DISTRICT  —— 街道小组（全量展开）
+   ══════════════════════════════════ */
+function PageDistrict(){
+  const {groups, title} = window.__MEMBERS__;
+  const [selGroup, setSelGroup] = useState(null);
+  const [selMem,   setSelMem]   = useState(null);
+  const [search,   setSearch]   = useState('');
+
+  // 全局搜索委员
+  const searchResult = useMemo(()=>{
+    if(!search.trim()) return null;
+    const q = search.trim();
+    return groups.flatMap(g=>
+      g.members
+        .filter(m=>m.name.includes(q)||m.position.includes(q)||m.party.includes(q))
+        .map(m=>({...m, groupName:g.groupName}))
+    );
+  },[search]);
+
+  return (
+    <div className="page-enter">
+      <div className="hero">
+        <div className="hero-eyebrow"><div className="hero-dot"/>委员分布</div>
+        <div className="hero-title">街道委员小组</div>
+        <div className="hero-sub">{title}</div>
+      </div>
+
+      {/* 全局搜索 */}
+      <div className="search-bar" style={{marginBottom:24}}>
+        <div className="search-wrap">
+          <span className="search-icon">🔍</span>
+          <input className="search-input" placeholder="跨小组搜索委员姓名、单位…"
+            value={search} onChange={e=>{setSearch(e.target.value);setSelGroup(null)}}/>
+        </div>
+        {search && <button className="filter-btn active" onClick={()=>setSearch('')}>清除搜索</button>}
+      </div>
+
+      {/* 搜索结果 */}
+      {searchResult && (
+        <div className="sec">
+          <div className="sec-hd">
+            <div className="sec-title"><div className="sec-bar"/>搜索结果（{searchResult.length} 人）</div>
+          </div>
+          <div className="tbl-wrap">
+            <table>
+              <thead><tr><th>姓名</th><th>党派</th><th>性别</th><th>所属小组</th><th>工作单位及职务</th></tr></thead>
+              <tbody>
+                {searchResult.map((m,i)=>(
+                  <tr key={i} className="row-hover">
+                    <td><strong>{m.name}</strong></td>
+                    <td><span className="tag tag-blue">{m.party}</span></td>
+                    <td>{m.gender}</td>
+                    <td><span className="tag tag-red">{m.groupName}</span></td>
+                    <td>{m.position}</td>
+                  </tr>
+                ))}
+                {searchResult.length===0 &&
+                  <tr><td colSpan={5} style={{textAlign:'center',padding:24,color:'var(--text3)'}}>未找到匹配委员</td></tr>}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* 分组卡片列表（全量展示所有委员） */}
+      {!search && (
+        <div style={{display:'flex',flexDirection:'column',gap:20}}>
+          {groups.map(g=>{
+            const isOpen = selGroup === g.groupName;
+            return (
+              <div key={g.groupName}
+                className={`district-card${isOpen?' selected':''}`}
+                onClick={()=>{ setSelGroup(isOpen ? null : g.groupName); setSelMem(null); }}>
+                <div className="district-hd">
+                  <div className="district-name">
+                    {isOpen ? '▼' : '▶'} {g.groupName}
+                  </div>
+                  <div style={{display:'flex',alignItems:'center',gap:8}}>
+                    <span className="district-count">{g.members.length} 人</span>
+                    {isOpen && <span className="tag tag-red">已展开</span>}
+                  </div>
+                </div>
+
+                {/* 展开后显示全量委员表格 */}
+                {isOpen && (
+                  <div className="district-body" onClick={e=>e.stopPropagation()}>
+                    <table className="member-table">
+                      <thead>
+                        <tr>
+                          <th>序号</th>
+                          <th>姓名</th>
+                          <th>党派</th>
+                          <th>性别</th>
+                          <th>工作单位及职务</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {g.members.map((m,i)=>(
+                          <tr key={i}
+                            className={selMem===`${g.groupName}-${i}` ? 'selected-row' : ''}
+                            onClick={()=>setSelMem(
+                              selMem===`${g.groupName}-${i}` ? null : `${g.groupName}-${i}`
+                            )}
+                            style={{cursor:'pointer'}}>
+                            <td><span className="tag tag-gray">{m.id||i+1}</span></td>
+                            <td><strong>{m.name}</strong></td>
+                            <td><span className="tag tag-blue">{m.party}</span></td>
+                            <td>{m.gender}</td>
+                            <td>{m.position}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <p style={{fontSize:12,color:'var(--text3)',marginTop:8,textAlign:'right'}}>
+                      共 {g.members.length} 位委员 · 点击行高亮选中
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   PAGE: JIEBEI 界别风采
+   ══════════════════════════════════ */
+function PageJiebei(){
+  const {plan} = window.__PLAN__;
+  const photos  = window.__ACT_PHOTOS__.photos;
+  const [tab, setTab]       = useState('overview');
+  const [selJB, setSelJB]   = useState(null);
+
+  // group photos by jiebei
+  const photosByJB = useMemo(()=>{
+    const m={};
+    photos.forEach(p=>{ if(!m[p.jiebei]) m[p.jiebei]=[]; m[p.jiebei].push(p); });
+    return m;
+  },[]);
+
+  return (
+    <div className="page-enter">
+      <div className="hero">
+        <div className="hero-eyebrow"><div className="hero-dot"/>界别</div>
+        <div className="hero-title">界别风采</div>
+        <div className="hero-sub">共 {plan.length} 个界别 · 年度履职动态 · 活动精彩瞬间</div>
+      </div>
+      <div className="tab-bar">
+        {[{id:'overview',label:'界别总览'},{id:'photos',label:'活动照片'},{id:'plan',label:'履职计划'}].map(t=>(
+          <div key={t.id} className={`tab${tab===t.id?' active':''}`}
+            onClick={()=>{setTab(t.id);setSelJB(null)}}>{t.label}</div>
+        ))}
+      </div>
+
+      {tab==='overview' && (
+        <div className="card-grid">
+          {plan.map((g,i)=>(
+            <div key={i} className={`card${selJB===i?' selected':''}`}
+              onClick={()=>setSelJB(i===selJB?null:i)}>
+              {selJB===i && <div className="card-check"><span style={{color:'#fff',fontSize:12}}>✓</span></div>}
+              <div className="card-name">{g.jiebei}</div>
+              <div className="card-info">年度活动：{g.activities.length} 项</div>
+              {selJB===i && (
+                <div style={{marginTop:12}}>
+                  {g.activities.map((a,j)=>(
+                    <div key={j} style={{padding:'6px 0',borderBottom:'1px dashed var(--border)',fontSize:13}}>
+                      <div style={{fontWeight:500}}>{a.name}</div>
+                      <div style={{color:'var(--text3)',fontSize:12}}>{a.type} · {a.plannedTime}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="card-meta">
+                {g.activities.slice(0,2).map((a,j)=>(
+                  <span key={j} className="tag tag-gray">{a.type}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {tab==='photos' && (
+        <div>
+          {Object.entries(photosByJB).map(([jb, phs])=>(
+            <div className="sec" key={jb}>
+              <div className="sec-hd">
+                <div className="sec-title"><div className="sec-bar"/>{jb}（{phs.length}张）</div>
+              </div>
+              <PhotoGrid photos={phs} maxShow={8}/>
+            </div>
+          ))}
+          {Object.keys(photosByJB).length===0 &&
+            <p style={{color:'var(--text3)',padding:32,textAlign:'center'}}>暂无活动照片</p>}
+        </div>
+      )}
+
+      {tab==='plan' && (
+        <div className="tbl-wrap">
+          <table>
+            <thead><tr><th>界别</th><th>活动名称</th><th>活动类型</th><th>拟召开时间</th></tr></thead>
+            <tbody>
+              {plan.flatMap((g,gi)=>g.activities.map((a,ai)=>(
+                <tr key={`${gi}-${ai}`} className="row-hover">
+                  <td><span className="tag tag-red">{g.jiebei}</span></td>
+                  <td>{a.name}</td>
+                  <td><span className="tag tag-blue">{a.type}</span></td>
+                  <td>{a.plannedTime}</td>
+                </tr>
+              )))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   PAGE: CONSULT 协商民主
+   ══════════════════════════════════ */
+function PageConsult(){
+  const plat = window.__PLATFORM__;
+  return (
+    <div className="page-enter">
+      <div className="hero">
+        <div className="hero-eyebrow"><div className="hero-dot"/>实践中心</div>
+        <div className="hero-title">协商民主实践</div>
+        <div className="hero-sub">市政协新时代协商民主实践 · {plat.district}分中心</div>
+      </div>
+      <div className="card-grid" style={{marginBottom:32}}>
+        {[
+          {icon:'🏛',title:'分中心建设',desc:`${plat.district}分中心依托委员工作室，推进协商民主向基层延伸，覆盖全区各街道委员小组。`},
+          {icon:'📣',title:'界别协商',desc:'定期组织各界别委员开展界别协商活动，围绕重点民生议题深入调研，形成高质量提案建议。'},
+          {icon:'🤝',title:'民生议事堂',desc:'在各街道设立民生议事堂，搭建委员与居民直接沟通渠道，推动协商成果转化落地。'},
+          {icon:'📊',title:'数字协商',desc:'推进协商民主数字化转型，实现协商流程线上化、数据化，提升协商效率与透明度。'},
+        ].map((c,i)=>(
+          <div className="card" key={i} style={{cursor:'default'}}>
+            <div style={{fontSize:32,marginBottom:12}}>{c.icon}</div>
+            <div className="card-name">{c.title}</div>
+            <div className="card-info">{c.desc}</div>
+          </div>
+        ))}
+      </div>
+      <div className="sec">
+        <div className="sec-hd"><div className="sec-title"><div className="sec-bar"/>平台概述</div></div>
+        <div style={{background:'var(--surface)',borderRadius:'var(--r-lg)',padding:24,border:'1px solid var(--border)',fontSize:14,lineHeight:2,color:'var(--text1)'}}>
+          {plat.overview}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   PAGE: PLATFORM 履职平台
+   ══════════════════════════════════ */
+function PagePlatform(){
+  const plat    = window.__PLATFORM__;
+  const studios = plat.studios || [];
+  const photos  = window.__STU_PHOTOS__.photos;
+  const st      = plat.statistics;
+
+  return (
+    <div className="page-enter">
+      <div className="hero">
+        <div className="hero-eyebrow"><div className="hero-dot"/>委员工作室</div>
+        <div className="hero-title">委员履职平台</div>
+        <div className="hero-sub">{st.total_studios} 个委员工作室 · {st.coverage}</div>
+      </div>
+
+      <div className="stat-row" style={{marginBottom:32}}>
+        <div className="stat-card"><div className="stat-icon">⭐</div><div className="stat-num">{st.star_ratings_2025.five_star}</div><div className="stat-label">五星工作室</div></div>
+        <div className="stat-card"><div className="stat-icon">🌟</div><div className="stat-num">{st.star_ratings_2025.four_star}</div><div className="stat-label">四星工作室</div></div>
+        <div className="stat-card"><div className="stat-icon">✨</div><div className="stat-num">{st.star_ratings_2025.three_star}</div><div className="stat-label">三星工作室</div></div>
+        <div className="stat-card"><div className="stat-icon">🏢</div><div className="stat-num">{st.total_studios}</div><div className="stat-label">工作室总计</div></div>
+      </div>
+
+      <div className="sec">
+        <div className="sec-hd"><div className="sec-title"><div className="sec-bar"/>工作室活动照片</div></div>
+        {photos.length > 0 ? <PhotoGrid photos={photos} maxShow={12}/> :
+          <p style={{color:'var(--text3)',textAlign:'center',padding:32}}>暂无工作室活动照片</p>}
+      </div>
+
+      {studios.length > 0 && (
+        <div className="sec">
+          <div className="sec-hd"><div className="sec-title"><div className="sec-bar"/>工作室列表</div></div>
+          <div className="card-grid-3">
+            {studios.map((s,i)=>(
+              <div className="card" key={i} style={{cursor:'default'}}>
+                <div className="card-name">{s.name}</div>
+                <div className="card-info">领衔：{s.leader}</div>
+                <div className="card-info" style={{marginTop:4}}>📍 {s.address}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   PAGE: STUDIOS 委员工作室
+   ══════════════════════════════════ */
+function PageStudios(){
+  const {studios, total, title} = window.__STUDIOS__;
+  const [search, setSearch] = useState('');
+  const [sel, setSel]       = useState(null);
+
+  const filtered = useMemo(()=>{
+    if(!search.trim()) return studios;
+    const q = search.trim();
+    return studios.filter(s=>
+      s.name.includes(q)||s.leader.includes(q)||s.address.includes(q)
+    );
+  },[search, studios]);
+
+  return (
+    <div className="page-enter">
+      <div className="hero">
+        <div className="hero-eyebrow"><div className="hero-dot"/>工作室</div>
+        <div className="hero-title">委员工作室</div>
+        <div className="hero-sub">{title} · 共 {total} 个</div>
+      </div>
+
+      <div className="search-bar">
+        <div className="search-wrap">
+          <span className="search-icon">🔍</span>
+          <input className="search-input" placeholder="搜索工作室名称、领衔委员、地址…"
+            value={search} onChange={e=>setSearch(e.target.value)}/>
+        </div>
+        {search && <button className="filter-btn active" onClick={()=>setSearch('')}>清除</button>}
+        <span style={{fontSize:13,color:'var(--text3)'}}>共 {filtered.length} 个</span>
+      </div>
+
+      <div className="card-grid">
+        {filtered.map((s,i)=>(
+          <div key={i} className={`card${sel===i?' selected':''}`}
+            onClick={()=>setSel(i===sel?null:i)}>
+            {sel===i && <div className="card-check"><span style={{color:'#fff',fontSize:12}}>✓</span></div>}
+            <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:8}}>
+              <span className="tag tag-red" style={{fontWeight:700}}>#{s.id}</span>
+            </div>
+            <div className="card-name">{s.name}</div>
+            <div className="card-info">👤 领衔委员：{s.leader}</div>
+            <div className="card-info">📍 {s.address}</div>
+          </div>
+        ))}
+        {filtered.length===0 &&
+          <div style={{gridColumn:'1/-1',textAlign:'center',padding:48,color:'var(--text3)'}}>未找到匹配的工作室</div>}
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   PAGE: PLAN 履职计划
+   ══════════════════════════════════ */
+function PagePlan(){
+  const {plan, title} = window.__PLAN__;
+  const [tab, setTab]   = useState('all');
+  const [selJB, setSelJB] = useState('all');
+
+  const jiebeis = useMemo(()=>plan.map(g=>g.jiebei),[]);
+  const allActs = useMemo(()=>
+    plan.flatMap(g=>g.activities.map(a=>({...a, jiebei:g.jiebei}))),
+  []);
+
+  const shown = useMemo(()=>{
+    if(selJB==='all') return allActs;
+    return allActs.filter(a=>a.jiebei===selJB);
+  },[selJB, allActs]);
+
+  const typeColors = {
+    '专题协商':'tag-red', '界别协商':'tag-blue', '民主监督':'tag-green',
+    '调研视察':'tag-gold', '反映社情民意':'tag-gray',
+  };
+  function typeTag(type){ return typeColors[type]||'tag-gray'; }
+
+  return (
+    <div className="page-enter">
+      <div className="hero">
+        <div className="hero-eyebrow"><div className="hero-dot"/>年度计划</div>
+        <div className="hero-title">2026年度履职计划</div>
+        <div className="hero-sub">{title} · 共 {allActs.length} 项活动</div>
+      </div>
+
+      <div className="tab-bar">
+        <div className={`tab${tab==='all'?' active':''}`} onClick={()=>setTab('all')}>全部活动</div>
+        <div className={`tab${tab==='jiebei'?' active':''}`} onClick={()=>setTab('jiebei')}>按界别筛选</div>
+      </div>
+
+      {tab==='jiebei' && (
+        <div className="filter-btns" style={{marginBottom:20,flexWrap:'wrap'}}>
+          <button className={`filter-btn${selJB==='all'?' active':''}`} onClick={()=>setSelJB('all')}>全部</button>
+          {jiebeis.map(jb=>(
+            <button key={jb} className={`filter-btn${selJB===jb?' active':''}`}
+              onClick={()=>setSelJB(jb)}>{jb}</button>
+          ))}
+        </div>
+      )}
+
+      <div style={{marginBottom:12,fontSize:13,color:'var(--text3)'}}>
+        显示 {shown.length} 项活动
+        {selJB!=='all' && <> · 界别：<strong style={{color:'var(--red)'}}>{selJB}</strong></>}
+      </div>
+      <div className="tbl-wrap">
+        <table>
+          <thead><tr><th>#</th><th>界别</th><th>活动名称</th><th>活动类型</th><th>拟召开时间</th></tr></thead>
+          <tbody>
+            {shown.map((a,i)=>(
+              <tr key={i} className="row-hover">
+                <td><span className="tag tag-gray">{i+1}</span></td>
+                <td><span className="tag tag-red">{a.jiebei}</span></td>
+                <td style={{fontWeight:500}}>{a.name}</td>
+                <td><span className={`tag ${typeTag(a.type)}`}>{a.type}</span></td>
+                <td>{a.plannedTime}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+/* ══════════════════════════════════
+   APP ROOT
+   ══════════════════════════════════ */
+function App(){
+  const [page, setPage] = useState('home');
+  const [loading, setLoading] = useState(true);
+
+  // Simulate parallel data init
+  useEffect(()=>{
+    Promise.all([
+      new Promise(r=>setTimeout(r,60)),
+      new Promise(r=>setTimeout(r,80)),
+      new Promise(r=>setTimeout(r,100)),
+    ]).then(()=>setLoading(false));
+  },[]);
+
+  const pages = {
+    home:     <PageHome/>,
+    members:  <PageMembers/>,
+    district: <PageDistrict/>,
+    jiebei:   <PageJiebei/>,
+    consult:  <PageConsult/>,
+    platform: <PagePlatform/>,
+    studios:  <PageStudios/>,
+    plan:     <PagePlan/>,
+  };
+
+  return (
+    <div style={{display:'flex',flexDirection:'column',minHeight:'100vh'}}>
+      {/* Gov Banner */}
+      <div className="gov-banner">
+        <div style={{display:'flex',gap:20}}>
+          <span>杭州市上城区人民政府</span>
+          <span>·</span>
+          <span>政协杭州市上城区委员会</span>
+        </div>
+        <div style={{display:'flex',gap:16}}>
+          <span>信息公开</span>
+          <span>|</span>
+          <span>网上办事</span>
+          <span>|</span>
+          <span>政民互动</span>
+        </div>
+      </div>
+
+      {/* Header + Nav */}
+      <div className="header">
+        <div className="header-inner">
+          <div className="logo">
+            <div className="logo-emblem">政</div>
+            <div>
+              <div className="logo-title">政协委员通</div>
+              <div className="logo-sub">杭州市上城区政协</div>
+            </div>
+          </div>
+          <nav className="topnav">
+            {NAV.map(n=>(
+              <button key={n.id}
+                className={`nav-item${page===n.id?' active':''}`}
+                onClick={()=>setPage(n.id)}>
+                <span className="nav-icon">{n.icon}</span>{n.label}
+              </button>
+            ))}
+          </nav>
+          <div className="hdr-actions">
+            <button className="hdr-btn">🔔 通知</button>
+            <button className="hdr-btn">👤 登录</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main */}
+      <main className="main">
+        {loading ? (
+          <div style={{display:'flex',flexDirection:'column',gap:16}}>
+            {[240,180,120,160].map((h,i)=>(
+              <div key={i} className="skel" style={{height:h,borderRadius:12}}/>
+            ))}
+          </div>
+        ) : (
+          <div key={page}>
+            {pages[page] || <PageHome/>}
+          </div>
+        )}
+      </main>
+
+      {/* Footer */}
+      <footer style={{background:'var(--red-deep)',color:'rgba(255,255,255,.7)',padding:'20px 24px',textAlign:'center',fontSize:12,marginTop:'auto'}}>
+        <div>政协杭州市上城区委员会 · 政协委员通履职服务平台</div>
+        <div style={{marginTop:6,opacity:.6}}>数据来源：上城区政协 2026 年度工作数据 · 本平台供内部学习与展示</div>
+      </footer>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
